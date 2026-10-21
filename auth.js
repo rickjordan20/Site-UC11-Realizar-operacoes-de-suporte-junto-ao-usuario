@@ -32,7 +32,8 @@ if (!configured) {
         if (!response.ok) throw new Error("Não foi possível validar sua matrícula.");
         const result = await response.json();
         if (result.authorized !== true) { setStatus("Esta conta não está autorizada para a turma 2025.07.186."); return; }
-        setStatus("Conta verificada. Bem-vindo(a) à UC11! A autorização foi confirmada.");
+        setStatus("Matrícula confirmada! Abrindo a plataforma...");
+        window.location.replace(new URL("index.html", window.location.href).href);
       } catch { setStatus("Não foi possível confirmar sua matrícula. Tente novamente ou procure o instrutor."); }
     };
     onAuthStateChanged(auth, verify, () => setStatus("Falha ao verificar a sessão."));
