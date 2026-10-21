@@ -2,10 +2,10 @@ import { firebaseConfig, authorizationEndpoint } from "./auth-config.js";
 const status = document.getElementById("auth-status");
 const login = document.getElementById("auth-login");
 const logout = document.getElementById("auth-logout");
-const configured = Boolean(firebaseConfig.apiKey && firebaseConfig.authDomain && firebaseConfig.projectId && firebaseConfig.appId && authorizationEndpoint);
+const configured = Boolean(firebaseConfig.apiKey && firebaseConfig.authDomain && firebaseConfig.projectId && firebaseConfig.appId);
 const setStatus = message => { status.textContent = message; };
 if (!configured) {
-  setStatus("Login em preparação. O instrutor ainda precisa conectar o Firebase e a validação da turma no Google Classroom.");
+  setStatus("Configuração Firebase incompleta. Procure o instrutor.");
 } else {
   try {
     const [{ initializeApp }, { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }] = await Promise.all([
@@ -19,6 +19,7 @@ if (!configured) {
     const verify = async user => {
       if (!user) { setStatus("Entre com sua conta Google para solicitar acesso."); logout.hidden = true; return; }
       logout.hidden = false;
+      if (!authorizationEndpoint) { setStatus("✓ Login Google realizado com sucesso. A verificação da matrícula no Classroom ainda não está configurada; o acesso restrito não foi liberado."); return; }
       setStatus("Verificando sua matrícula na turma...");
       try {
         const token = await user.getIdToken();
