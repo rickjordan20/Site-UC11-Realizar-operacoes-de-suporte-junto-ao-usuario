@@ -1,12 +1,11 @@
 // Vercel Function — verificação de matrícula no Google Classroom.
 // Variáveis privadas configuradas APENAS no painel Vercel.
-import { initializeApp, getApps } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
+import { createRemoteJWKSet, jwtVerify } from "jose";
 
 const FIREBASE_PROJECT = "uc11---central-de-suporte";
 const COURSE_ID = "689889762928";
 const ORIGIN = "https://rickjordan20.github.io";
-if (!getApps().length) initializeApp({ projectId: FIREBASE_PROJECT });
+const firebaseKeys = createRemoteJWKSet(new URL("https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"));
 
 function reply(res, status, payload) {
   res.status(status).setHeader("Cache-Control", "no-store");
@@ -62,12 +61,18 @@ export default async function handler(req, res) {
   const match = /^Bearer (.+)$/.exec(req.headers.authorization || "");
   if (!match) return reply(res, 401, { authorized: false });
   try {
-    const decoded = await getAuth().verifyIdToken(match[1], true);
-    const user = await getAuth().getUser(decoded.uid);
-    const googleIdentity = user.providerData.find(p => p.providerId === "google.com");
-    if (!googleIdentity?.uid) return reply(res, 403, { authorized: false });
+    const { payload } = await jwtVerify(match[1], firebaseKeys, {
+      algorithms: ["RS256"],
+      issuer: "https://securetoken.google.com/" + FIREBASE_PROJECT,
+      audience: FIREBASE_PROJECT
+    });
+    if (!payload.sub || !payload.auth_time || payload.exp <= Math.floor(Date.now() / 1000))
+      return reply(res, 401, { authorized: false });
+    const googleId = payload.firebase?.identities?.["google.com"]?.[0];
+    if (!googleId || payload.firebase?.sign_in_provider !== "google.com")
+      return reply(res, 403, { authorized: false });
     const accessToken = await classroomToken();
-    const authorized = await isStudent(googleIdentity.uid, accessToken);
+    const authorized = await isStudent(googleId, accessToken);
     return reply(res, 200, { authorized });
   } catch (err) {
     // Fail closed; never reveal provider credentials or roster details.
