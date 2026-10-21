@@ -1,12 +1,13 @@
-// Preencher após configurar o projeto Firebase e o serviço de autorização.
-// A configuração web do Firebase contém identificadores públicos, NÃO credenciais privadas.
-// Nunca publique service account, tokens ou chaves privadas neste repositório.
+// Identificadores públicos do aplicativo Firebase Web (não são credenciais privadas).
 export const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  appId: ""
+  apiKey: "AIzaSyCI7AgQVvsZVLh7xJA4m94iEAQlH2Uu77Q",
+  authDomain: "uc11---central-de-suporte.firebaseapp.com",
+  projectId: "uc11---central-de-suporte",
+  storageBucket: "uc11---central-de-suporte.firebasestorage.app",
+  messagingSenderId: "205903190617",
+  appId: "1:205903190617:web:5cea13a685d9eeb94bef48",
+  measurementId: "G-G8E0QZ6X26"
 };
-// Endpoint HTTPS que verifica o Firebase ID token e confirma a matrícula no Classroom
-// por meio de credenciais mantidas exclusivamente no servidor.
+// Pendente: endpoint HTTPS que valida o token e a matrícula no Google Classroom.
+// Sem ele, o acesso permanece bloqueado por segurança.
 export const authorizationEndpoint = "";
