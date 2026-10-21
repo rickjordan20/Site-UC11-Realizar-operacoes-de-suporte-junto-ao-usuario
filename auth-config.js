@@ -11,3 +11,7 @@ export const firebaseConfig = {
 // Pendente: endpoint HTTPS que valida o token e a matrícula no Google Classroom.
 // Sem ele, o acesso permanece bloqueado por segurança.
 export const authorizationEndpoint = "";
+
+// ID público da turma no Google Classroom (extraído do link /c/).
+// A verificação de matrícula deve ocorrer exclusivamente no servidor.
+export const classroomCourseId = "689889762928";
