@@ -254,4 +254,4 @@ $('backup').onclick=()=>{save();const b=new Blob([JSON.stringify(state,null,2)],
 $('reset').onclick=()=>{if(confirm('Apagar respostas e imagens desta aula?')){localStorage.removeItem(KEY);location.reload()}};
 showPage(Math.min(Number(state.page)||0,Number(state.unlocked)||0));
 })();
-</script></body></html>
+</script><script defer src="glpi-manual-floating.js?v=1"></script></body></html>
