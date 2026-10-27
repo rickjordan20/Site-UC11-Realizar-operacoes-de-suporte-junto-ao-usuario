@@ -46,4 +46,4 @@
 </dialog>
 <script>
 (()=>{const dialog=document.getElementById('glpi-manual');const open=document.getElementById('open-glpi-manual');let previous=null;open.addEventListener('click',()=>{previous=document.activeElement;dialog.showModal()});function close(){dialog.close();if(previous&&previous.focus)previous.focus()}document.getElementById('close-glpi-manual').addEventListener('click',close);document.getElementById('glpi-manual-done').addEventListener('click',close);dialog.addEventListener('click',e=>{if(e.target===dialog)close()});dialog.addEventListener('close',()=>{if(previous&&previous.focus)previous.focus()})})();
-</script></body></html>
+</script><script defer src="glpi-manual-floating.js?v=1"></script></body></html>
