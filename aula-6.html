@@ -29,6 +29,29 @@
 .a6 .a6-banner h1,.a6 .a6-banner p{max-width:730px}
 .a6 .a6-banner #student,.a6 .a6-banner label[for="student"],.a6 .a6-banner p.small{display:none!important}
 @media(max-width:650px){.a6 .panel{padding:17px}.a6 .a6-stage-nav button{flex:1 1 42%}.a6 .a6-banner:after{opacity:.2}}
+</style><style id="a6-interactions-polish">
+/* Aula 5: controles compactos, alinhados e com estados visíveis. */
+.a6 #multi{display:grid;gap:10px;margin:16px 0}
+.a6 #multi label{display:flex;align-items:center;gap:14px;margin:0;padding:14px 16px;min-height:56px;border:1px solid #456b8a;border-radius:11px;background:#17334f;color:#e7f3ff;font-weight:550;line-height:1.45;cursor:pointer;transition:background .15s,border-color .15s}
+.a6 #multi label:hover{background:#1b4264;border-color:#75b3df}
+.a6 #multi label:has(input:checked){background:#19476a;border-color:#55c4ff}
+.a6 #multi input[type="checkbox"]{appearance:auto;flex:0 0 19px;width:19px!important;height:19px!important;margin:0!important;accent-color:#49b8ff;cursor:pointer}
+.a6 .options{display:grid;gap:10px;margin:16px 0}
+.a6 .options label{display:flex;align-items:center;gap:12px;margin:0;padding:14px 16px;border:1px solid #456b8a;background:#17334f;border-radius:11px;cursor:pointer;font-weight:500}
+.a6 .options input[type="radio"]{flex:0 0 19px;width:19px!important;height:19px!important;margin:0!important;accent-color:#49b8ff}
+.a6 .options label:has(input:checked){background:#19476a;border-color:#55c4ff}
+.a6 #slide .orderrow{background:#17334f;border:1px solid #456b8a;border-radius:10px;padding:10px;gap:10px}
+.a6 #slide .orderrow button{min-width:42px;padding:8px 10px}
+.a6 #slide label:has(select[data-match]){display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid #456b8a;background:#17334f;border-radius:10px}
+.a6 #slide select[data-match]{min-width:145px;max-width:230px;width:auto;margin:0}
+.a6 #slide button[id^="check-"]{margin-top:12px}
+.a6 #slide [id$="-feedback"]:not(:empty){display:block;margin:14px 0;padding:13px 15px;border-left:4px solid #65baff;border-radius:8px;background:#183d5b;color:#e7f3ff}
+.a6 #slide [id$="-feedback"]:empty{display:none}
+.a6 #slide textarea{display:block;width:100%;margin-top:10px}
+.a6 #slide .card{margin:12px 0}
+.a6 .a6-stage-footer{border-top:1px solid #315273;padding-top:16px}
+.a6 .a6-stage-nav button{white-space:nowrap}
+@media(max-width:600px){.a6 #slide label:has(select[data-match]){align-items:stretch;flex-direction:column}.a6 #slide select[data-match]{width:100%;max-width:none}.a6 #multi label{padding:12px}}
 </style></head><body><header><a class="brand" href="index.html">UC<span>11</span> · Central de Suporte</a><nav><a href="index.html">Início</a><a href="aula-5.html">Aula 5</a></nav></header><main class="a6">
 <section class="panel hero a6-banner active"><div class="tag">AULA 06 · PRESENCIAL · 4 HORAS · INDICADORES I1 E I2</div><h1>Canais de Atendimento: E-mail, Chat, Telefone e WhatsApp</h1><p>Aprenda a selecionar canais, atender com clareza, proteger informações e manter a continuidade do suporte.</p><span class="pill">Teoria interativa · 45 min</span><span class="pill">TechEduca · 75 min</span><span class="pill">Café Central · 90 min</span><span class="pill">Fechamento · 30 min</span><label for="student">Nome completo do estudante</label><input id="student" autocomplete="name" placeholder="Informe seu nome antes de iniciar"><p class="small">As respostas ficam neste navegador até a limpeza dos dados. Não inclua dados reais de clientes.</p></section>
 <section class="panel"><h2>1. Teoria contextualizada — 10 slides</h2><p>Leia, analise o exemplo, resolva o desafio e confira a explicação antes de avançar.</p><div class="progress"><div id="bar"></div></div><p id="counter" class="tag"></p><div id="slide"></div><div class="actions"><button id="prev">← Anterior</button><button id="next" class="primary">Próximo →</button></div></section>
@@ -79,7 +102,7 @@ function display(){stagePanels.forEach((p,i)=>p.classList.toggle('active',i===ac
 function move(i){if(i>unlocked){message.textContent='Conclua a etapa atual para liberar a próxima.';return}active=i;display()}
 function nextStage(){if(!checks[active]()){message.textContent=prompts[active];return}if(active<4){unlocked=Math.max(unlocked,active+1);active++;display()}}
 names.forEach((name,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' · '+name;b.onclick=()=>move(i);nav.append(b)});
-stagePanels.forEach((p,i)=>{const footer=document.createElement('div');footer.className='a6-stage-footer';const back=document.createElement('button');back.type='button';back.textContent='← Voltar';back.onclick=()=>move(Math.max(0,i-1));back.disabled=i===0;const next=document.createElement('button');next.type='button';next.className='primary';next.textContent=i===4?'Finalizado':'Concluir etapa →';next.disabled=i===4;next.onclick=nextStage;footer.append(back,next);p.append(footer)});
+stagePanels.forEach((p,i)=>{if(i===1)return;const footer=document.createElement('div');footer.className='a6-stage-footer';const back=document.createElement('button');back.type='button';back.textContent='← Voltar';back.onclick=()=>move(Math.max(0,i-1));back.disabled=i===0;const next=document.createElement('button');next.type='button';next.className='primary';next.textContent=i===4?'Finalizado':'Concluir etapa →';next.disabled=i===4;next.onclick=nextStage;footer.append(back,next);p.append(footer)});
 function setupCases(id,n,min){const host=document.getElementById(id),cards=[...host.querySelectorAll('article.card')];let pos=0;const footer=document.createElement('div');footer.className='a6-stage-footer';const back=document.createElement('button');back.type='button';back.textContent='← Caso anterior';const next=document.createElement('button');next.type='button';next.className='primary';const counter=document.createElement('p');counter.className='a6-case-progress';footer.append(back,next);host.after(counter,footer);
 function paint(){cards.forEach((c,i)=>c.style.display=i===pos?'block':'none');counter.textContent='Caso '+(pos+1)+' de '+n;back.disabled=pos===0;next.textContent=pos===n-1?'Conferir último caso':'Concluir caso →'}
 back.onclick=()=>{pos=Math.max(0,pos-1);paint()};next.onclick=()=>{const field=document.getElementById(id+'-'+pos);if(field.value.trim().length<min){message.textContent='Preencha a resposta deste caso antes de avançar (mínimo '+min+' caracteres).';field.focus();return}message.textContent='';if(pos<n-1){pos++;paint()}else{message.textContent='Casos preenchidos. Clique em Concluir etapa para continuar.'}};paint()}
