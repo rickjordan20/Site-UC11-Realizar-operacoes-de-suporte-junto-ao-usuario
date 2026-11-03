@@ -1,0 +1,18 @@
+/* UC11 · Destaques pedagógicos: azul Senac, ciano, laranja e verde moderados. */
+:root{--uc11-accent-cyan:#65caff;--uc11-accent-orange:#ffb36b;--uc11-accent-mint:#8de0c0;--uc11-accent-violet:#c4b5fd}
+:is(.lesson-wrap,.a2-wrap,.a3,.a4,.a5,.a6,.async) :is(.slide-card,.a2-card,.tile3,.card,.a6 .card,.a5 .card,.async .card){
+ transition:border-color .18s ease,box-shadow .18s ease;
+}
+.lesson-wrap .slide-card:nth-child(4n+1),.a2 .a2-card:nth-child(4n+1),.a2-wrap .a2-card:nth-child(4n+1),.a3 .tile3:nth-child(4n+1),.a4 .card:nth-child(4n+1),.a5 .card:nth-child(4n+1),.a6 .card:nth-child(4n+1),.async .card:nth-child(4n+1){border-left:4px solid var(--uc11-accent-cyan)!important;background-image:linear-gradient(110deg,rgba(42,139,199,.12),transparent 65%)!important}
+.lesson-wrap .slide-card:nth-child(4n+2),.a2-wrap .a2-card:nth-child(4n+2),.a3 .tile3:nth-child(4n+2),.a4 .card:nth-child(4n+2),.a5 .card:nth-child(4n+2),.a6 .card:nth-child(4n+2),.async .card:nth-child(4n+2){border-left:4px solid var(--uc11-accent-orange)!important;background-image:linear-gradient(110deg,rgba(255,164,79,.11),transparent 65%)!important}
+.lesson-wrap .slide-card:nth-child(4n+3),.a2-wrap .a2-card:nth-child(4n+3),.a3 .tile3:nth-child(4n+3),.a4 .card:nth-child(4n+3),.a5 .card:nth-child(4n+3),.a6 .card:nth-child(4n+3),.async .card:nth-child(4n+3){border-left:4px solid var(--uc11-accent-mint)!important;background-image:linear-gradient(110deg,rgba(82,193,157,.1),transparent 65%)!important}
+.lesson-wrap .slide-card:nth-child(4n+4),.a2-wrap .a2-card:nth-child(4n+4),.a3 .tile3:nth-child(4n+4),.a4 .card:nth-child(4n+4),.a5 .card:nth-child(4n+4),.a6 .card:nth-child(4n+4),.async .card:nth-child(4n+4){border-left:4px solid var(--uc11-accent-violet)!important;background-image:linear-gradient(110deg,rgba(162,141,237,.11),transparent 65%)!important}
+.lesson-wrap .slide-highlight,.lesson-wrap .slide-note,.a2-wrap .a2-highlight,.a2-wrap .a2-note,.a3 .explain3,.a4 .slide-feedback,.a5 .note,.a6 .note,.async .hint{
+ border-left:4px solid var(--uc11-accent-cyan)!important;
+ background-image:linear-gradient(95deg,rgba(48,151,207,.14),transparent 85%)!important;
+ border-radius:9px;
+}
+:is(.lesson-wrap,.a2-wrap,.a3,.a4,.a5,.a6,.async) :is(.slide-kicker,.a2-section-kicker,.label3,.tag,.a6 .tag,.a5 .tag){color:var(--uc11-accent-cyan)!important}
+:is(.lesson-wrap,.a2-wrap,.a3,.a4,.a5,.a6,.async) :is(.slide-panel,.a2-slide,.slide3,.a4 .slide,.a5 .slide,.a6 .slide){background-image:radial-gradient(ellipse at 95% 0%,rgba(31,112,164,.24),transparent 55%),radial-gradient(ellipse at 0% 100%,rgba(240,146,62,.07),transparent 50%)!important}
+@media print{.lesson-wrap .slide-card,.a2-wrap .a2-card,.a3 .tile3,.a4 .card,.a5 .card,.a6 .card,.async .card{background-image:none!important;box-shadow:none!important}*{print-color-adjust:auto}}
+@media(prefers-reduced-motion:reduce){:is(.lesson-wrap,.a2-wrap,.a3,.a4,.a5,.a6,.async) :is(.slide-card,.a2-card,.tile3,.card){transition:none}}
