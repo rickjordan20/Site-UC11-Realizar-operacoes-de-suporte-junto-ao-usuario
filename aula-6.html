@@ -126,10 +126,10 @@ $('export').onclick=()=>{
  save();
  if(!state.name.trim()){alert('Informe seu nome completo antes de gerar o relatório.');$('student').focus();return}
  const sections=[
-  ['Prática guiada TechEduca',guided.map((c,i)=>c[0]+'\n'+(state.guided[i]||'Não preenchido')).join('\n\n')],
-  ['Prática autônoma Café Central',autonomous.map((c,i)=>c[0]+'\n'+(state.autonomous[i]||'Não preenchido')).join('\n\n')],
-  ['Ficha de registro',state.record||'Não preenchido'],
-  ['Autoavaliação',questions.map((q,i)=>q+' '+(state.self[i]||'Não respondido')).join('\n')]
+  ['Prática guiada TechEduca',guided.map((c,i)=>'Caso '+(i+1)+' — '+c[0]+'\\nSituação: '+c[1]+'\\nEnunciado: '+c[2]+'\\nResposta do estudante: '+(state.guided[i]||'Não preenchido')+'\\nReferência para discussão (prática guiada): '+c[3]).join('\\n\\n')],
+  ['Prática autônoma Café Central',autonomous.map((c,i)=>'Caso '+(i+1)+' — '+c[0]+'\\nSituação: '+c[1]+'\\nEnunciado: '+c[2]+'\\nResposta do estudante: '+(state.autonomous[i]||'Não preenchido')).join('\\n\\n')],
+  ['Ficha de registro','Resposta do estudante: '+(state.record||'Não preenchido')],
+  ['Autoavaliação',questions.map((q,i)=>'Pergunta '+(i+1)+': '+q+'\\nResposta: '+(state.self[i]||'Não respondido')).join('\\n\\n')]
  ];
  const glpiProjects=['TechEduca','Café Central'];
  const glpiText=glpiProjects.map(p=>p+' — chamado nº '+(state.glpiNumbers?.[p]||'Não realizado/informado')).join('\n');
