@@ -13,7 +13,7 @@ Site educacional da turma **2025.07.186 — Técnico em Desenvolvimento de Siste
 
 O site reúne calendário, indicadores, aulas presenciais, atividades assíncronas, autoavaliação e orientações para o uso do GLPI. As práticas usam os projetos **TechEduca** (guiadas pelo instrutor) e **Café Central** (autônomas).
 
-As aulas presenciais têm duração prevista de quatro horas. O catálogo de aulas é montado em `script.js`, a partir da lista `aulas`. A liberação por data usa o fuso `America/Sao_Paulo`, às **14h**, e a variável `ready` controla se o cartão aponta para uma página publicada.
+As aulas presenciais têm duração prevista de quatro horas. O catálogo de aulas é montado em `script.js`, a partir da lista `aulas`. A liberação por data usa o fuso `America/Sao_Paulo`, às **14h**, sem exigir ação manual de publicação. O catálogo usa `lessonFiles` apenas para não apontar para arquivos inexistentes.
 
 ## Aulas publicadas no catálogo
 
@@ -25,7 +25,7 @@ As aulas presenciais têm duração prevista de quatro horas. O catálogo de aul
 | 4 | 27/10/2026 | Registro, Categorização e Diagnóstico Inicial | I1 | `aula-4.html` |
 | **5** | **29/10/2026** | **Comunicação Profissional e Atendimento Humanizado** | **I2** | **`aula-5.html`** |
 
-As aulas seguintes permanecem no cronograma, mas não são consideradas publicadas automaticamente.
+A Aula 6 também está disponível no repositório. As aulas 7 a 17 ainda não possuem páginas HTML, portanto o catálogo não cria links quebrados; quando esses arquivos forem criados e adicionados a `lessonFiles`, a liberação dependerá apenas da data e do horário programados.
 
 ### Aula 5 — Comunicação Profissional e Atendimento Humanizado
 
@@ -56,7 +56,7 @@ As aulas seguintes permanecem no cronograma, mas não são consideradas publicad
 
 1. Criar e revisar a página `aula-N.html` com conteúdo e atividades completos.
 2. Conferir o registro da aula e sua data no array `aulas` de `script.js`.
-3. Adicionar a página ao mapeamento de links do catálogo e atualizar a condição `ready` para a aula correspondente. **Não liberar aulas futuras sem o conteúdo pronto.**
+3. Registrar o número da página existente em `lessonFiles` (ou `remoteFiles`, para assíncronas). Não existe botão nem aprovação manual de publicação: a liberação ocorre automaticamente às 14h da data prevista. Arquivos ainda inexistentes não podem ser disponibilizados.
 4. Testar navegação, identificação, interações, responsividade e geração de evidências.
 5. Publicar na branch `master`, acompanhar a implantação do Vercel e verificar o endereço oficial.
 6. Atualizar esta documentação.
