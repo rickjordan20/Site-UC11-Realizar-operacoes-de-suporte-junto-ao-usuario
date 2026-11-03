@@ -28,3 +28,41 @@ body.light .hero::before{border-color:#0d76b633}
 
 /* Melhorias progressivas de interação: sem dependências externas */
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.outline-action{display:inline-flex;align-items:center;border:1px solid #4d83ac;border-radius:10px;padding:13px 20px;color:#ccecff;font-weight:700}.outline-action:hover{background:#153657;border-color:#49b8ff}.next-event{margin-top:22px;padding:14px 18px;max-width:700px;background:#132c48;border:1px solid #315273;border-left:4px solid #49b8ff;border-radius:10px;color:#e4f3ff;font-size:14px}.calendar-tools,.lesson-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 12px}.calendar-tools label,.lesson-toolbar label{font-weight:700;font-size:14px}.calendar-tools input,.lesson-toolbar input{flex:1;min-width:220px;max-width:460px;background:#0e2037;color:#fff;border:1px solid #4c7092;border-radius:10px;padding:12px 14px;font:inherit}.calendar-tools input:focus,.lesson-toolbar input:focus{outline:2px solid #49b8ff;outline-offset:2px}.calendar-tools span,.lesson-toolbar span{font-size:13px;color:#b5d7f1}.empty-state{grid-column:1/-1;border:1px dashed #4c7092;border-radius:12px;padding:20px}.remote-item{border:1px solid #315273;background:#11233b;border-radius:14px;overflow:hidden}.remote-item summary{list-style:none;display:flex;align-items:center;gap:15px;padding:19px 20px;cursor:pointer}.remote-item summary::-webkit-details-marker{display:none}.remote-item summary:hover{background:#173452}.remote-item summary time{color:#82d1ff;font-weight:800;min-width:90px}.remote-item summary strong{flex:1}.remote-item summary small{color:#afc0d6}.remote-item summary span{font-size:22px;transition:transform .2s}.remote-item[open] summary span{transform:rotate(180deg)}.remote-detail{padding:4px 22px 18px;border-top:1px solid #315273}.remote-detail p{margin-bottom:6px}.remote-detail strong{color:#e8f6ff}#back-to-top{position:fixed;bottom:24px;right:24px;z-index:5;width:46px;height:46px;border-radius:50%;background:#49b8ff;color:#061626;border:0;font-size:23px;font-weight:800;box-shadow:0 8px 25px #0005;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .2s,transform .2s}#back-to-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}body.light .next-event{background:#e8f5ff;color:#163a57}body.light .outline-action{color:#075a93;border-color:#82b5d5}body.light .calendar-tools input,body.light .lesson-toolbar input{background:#fff;color:#10253b;border-color:#abc7dc}body.light .calendar-tools span,body.light .lesson-toolbar span{color:#526078}body.light .remote-item{background:#fff;border-color:#dce3ed}body.light .remote-item summary:hover{background:#e8f5ff}body.light .remote-item summary time,body.light .remote-detail strong{color:#12669b}body.light .remote-item summary small{color:#526078}body.light .remote-detail{border-color:#dce3ed}@media(max-width:720px){.remote-item summary{flex-wrap:wrap;gap:8px}.remote-item summary strong{flex-basis:65%}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+/* Catálogo UC11 — cartões editoriais, discretos e responsivos. */
+#lessons{align-items:stretch;gap:18px}
+#lessons .lesson-card{position:relative;display:flex;flex-direction:column;min-width:0;min-height:230px;padding:24px 23px 20px;border:1px solid #334b65;border-radius:15px;background:#111f31;color:#eaf2fb;box-shadow:0 3px 15px rgba(0,0,0,.1);overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+#lessons .lesson-card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:#4c7799;opacity:.55}
+#lessons .lesson-card.released::before{background:#54b8e8;opacity:1}
+#lessons .lesson-card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+#lessons .lesson-number{font-size:12px;letter-spacing:.075em;text-transform:uppercase;font-weight:750;color:#8fcbea}
+#lessons .lesson-date{font-size:12px;font-variant-numeric:tabular-nums;color:#aabdd0}
+#lessons .lesson-card h3{font-size:clamp(17px,1.6vw,20px);line-height:1.36;letter-spacing:-.015em;font-weight:680;margin:0 0 13px;color:#f5f9ff;overflow-wrap:anywhere}
+#lessons .lesson-indicator{margin:0 0 24px;color:#a9bdd1;font-size:12px;line-height:1.5;letter-spacing:.02em}
+#lessons .lesson-indicator::before{content:"Indicadores · ";color:#7f9eb8}
+#lessons .lesson-card-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid #2b4056;padding-top:15px;margin-top:auto}
+#lessons .lesson-status{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:650;color:#b8d2e2!important;margin:0}
+#lessons .status-dot{height:7px;width:7px;border-radius:50%;background:#76d6ae;box-shadow:0 0 0 3px rgba(118,214,174,.12)}
+#lessons .lesson-cta{display:inline-flex;align-items:center;gap:9px;margin:0;padding:0;background:transparent!important;color:#83d1f7!important;border-radius:0;font-size:12px;font-weight:750;white-space:nowrap}
+#lessons .lesson-cta span{font-size:17px;line-height:1;transition:transform .2s}
+#lessons .lesson-link:hover,#lessons .lesson-link:focus-visible{background:#15283c;border-color:#628aab;transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.18)}
+#lessons .lesson-link:hover .lesson-cta span{transform:translate(2px,-2px)}
+#lessons .lesson-link:focus-visible{outline:2px solid #79c9f3;outline-offset:3px}
+#lessons .lesson-card.locked,#lessons .lesson-card.pending{opacity:1;cursor:default;background:#101c2b;border-color:#293d52}
+#lessons .lesson-card.locked::before,#lessons .lesson-card.pending::before{background:#58718a;opacity:.45}
+#lessons .lesson-card.locked .lesson-number,#lessons .lesson-card.pending .lesson-number{color:#a4b7c8}
+#lessons .lesson-pending{display:inline-block;padding:0;background:none;color:#8fa8be;font-size:12px;line-height:1.45;border-radius:0}
+body.light #lessons .lesson-card{background:#fff;color:#1d354b;border-color:#d6e0e9;box-shadow:0 4px 15px rgba(20,46,70,.05)}
+body.light #lessons .lesson-card h3{color:#17344e}
+body.light #lessons .lesson-number{color:#17648f}
+body.light #lessons .lesson-date,body.light #lessons .lesson-indicator{color:#57728a}
+body.light #lessons .lesson-indicator::before{color:#68839a}
+body.light #lessons .lesson-card-bottom{border-color:#e1e9ef}
+body.light #lessons .lesson-status{color:#466780!important}
+body.light #lessons .lesson-cta{color:#116a9d!important;background:transparent!important}
+body.light #lessons .lesson-pending{color:#627b91;background:transparent}
+body.light #lessons .lesson-card.locked,body.light #lessons .lesson-card.pending{background:#f6f8fb}
+body.light #lessons .lesson-link:hover,body.light #lessons .lesson-link:focus-visible{background:#f1f8fc;border-color:#9abfd7}
+@media(max-width:600px){#lessons{gap:13px}#lessons .lesson-card{min-height:205px;padding:20px 19px 17px}#lessons .lesson-card-top{margin-bottom:15px}}
+@media(prefers-reduced-motion:reduce){#lessons .lesson-card,#lessons .lesson-cta span{transition:none}}
