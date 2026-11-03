@@ -18,10 +18,10 @@ function renderLessons(){
  document.querySelector('#lessons').innerHTML=matching.length?matching.map(({a,i})=>{
   const released=now>=releaseAt(a[0]);
   const exists=lessonFiles.has(i+1);
-  const common='<label>AULA '+(i+1)+' · '+a[0]+'/2026</label><h3>'+a[1]+'</h3><p>Indicadores: '+a[2]+'</p>';
-  if(released&&exists)return '<a class="lesson-card lesson-link released" href="aula-'+(i+1)+'.html" aria-label="Abrir aula '+(i+1)+': '+a[1]+'">'+common+'<p class="lesson-status">✓ Aula liberada automaticamente</p><span class="lesson-cta">Acessar conteúdo →</span></a>';
-  if(!released)return '<article class="lesson-card locked" aria-disabled="true">'+common+'<p class="lesson-status">🔒 Liberação automática: '+dateLabel(a[0])+'</p><span class="lesson-pending">Disponível a partir de '+dateLabel(a[0])+'</span></article>';
-  return '<article class="lesson-card released pending" aria-disabled="true">'+common+'<p class="lesson-status">Data de liberação atingida</p><span class="lesson-pending">Material ainda não disponível no site. A página desta aula precisa ser criada.</span></article>';
+  const common='<div class="lesson-card-top"><span class="lesson-number">Aula '+String(i+1).padStart(2,'0')+'</span><time class="lesson-date" datetime="2026-'+a[0].slice(3,5)+'-'+a[0].slice(0,2)+'">'+a[0]+'/2026</time></div><h3>'+a[1]+'</h3><p class="lesson-indicator">'+a[2]+'</p>';
+  if(released&&exists)return '<a class="lesson-card lesson-link released" href="aula-'+(i+1)+'.html" aria-label="Abrir aula '+(i+1)+': '+a[1]+'">'+common+'<div class="lesson-card-bottom"><span class="lesson-status"><span class="status-dot" aria-hidden="true"></span>Disponível</span><span class="lesson-cta">Acessar aula <span aria-hidden="true">↗</span></span></div></a>';
+  if(!released)return '<article class="lesson-card locked" aria-disabled="true">'+common+'<div class="lesson-card-bottom"><span class="lesson-status">Agendada · 14h</span><span class="lesson-pending">Disponível em '+a[0]+'</span></div></article>';
+  return '<article class="lesson-card pending" aria-disabled="true">'+common+'<div class="lesson-card-bottom"><span class="lesson-status">Data alcançada</span><span class="lesson-pending">Material em preparação</span></div></article>';
  }).join(''):'<p class="empty-state">Nenhuma aula encontrada. Tente outra busca.</p>';
 }
 renderLessons();setInterval(renderLessons,60000);document.querySelector("#lesson-search").addEventListener("input",renderLessons);
