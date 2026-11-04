@@ -26,7 +26,7 @@ function renderLessons(){
 }
 renderLessons();setInterval(renderLessons,60000);document.querySelector("#lesson-search").addEventListener("input",renderLessons);
 const remoteDetails=[['Revise os conceitos, classifique quatro situações e registre dois casos da TechEduca e quatro do Café Central.','Atividade individual com identificação, backup JSON e relatório em PDF.'],['Analise três solicitações e escreva respostas claras, respeitosas e úteis.','Três devolutivas profissionais ao usuário.'],['Avalie quatro demandas, organize a prioridade e indique a equipe ou fluxo adequado.','Ficha de triagem e encaminhamento de quatro chamados.'],['Escolha uma funcionalidade do sistema fictício e explique como utilizá-la em linguagem acessível.','Guia de uso com no mínimo cinco etapas.']];
-const remoteFiles=new Set([1]);
+const remoteFiles=new Set([1,2]);
 function renderRemoteActivities(){
  const now=brasilNow();
  document.querySelector('#remote').innerHTML=remotas.map((a,i)=>{
