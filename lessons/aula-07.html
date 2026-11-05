@@ -74,6 +74,32 @@
     .a7 .report section{border-top:1px solid #456b8a;padding:14px 0;break-inside:avoid}
     .a7 .report-answer{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #456b8a;border-radius:8px;padding:12px;min-height:42px}
     .a7 .small{font-size:14px}
+    /* Padrão visual compartilhado com as Aulas 5 e 6 */
+    .a7{max-width:1050px;padding:28px 18px 70px;color:#e7f3ff;font:16px/1.65 system-ui,Arial,sans-serif}
+    .a7 h1{font-size:clamp(27px,4vw,42px)}
+    .a7 .panel{background:#10243d;border:1px solid #315273;border-radius:16px;padding:24px;margin:17px 0}
+    .a7 .hero{background:linear-gradient(115deg,#102941,#1b466a);position:relative;overflow:hidden}
+    .a7 .hero:after{content:"";position:absolute;right:28px;top:28px;width:130px;height:130px;border:1px solid #28638d;border-radius:23px;transform:rotate(17deg);opacity:.4;pointer-events:none}
+    .a7 .hero>*{position:relative;z-index:1}
+    .a7 .hero h1,.a7 .hero p{max-width:730px}
+    .a7 .card{background:#17334f;border:1px solid #41698a;border-radius:12px;padding:17px;margin:12px 0}
+    .a7 .tag{color:#83d0ff}
+    .a7 .pill{display:inline-block;padding:3px 10px;border:1px solid #527ca0;border-radius:20px;font-size:12px;margin:3px 7px 3px 0}
+    .a7 button{background:#1d5078;border:1px solid #6198c4;padding:10px 15px;border-radius:9px}
+    .a7 button:hover:not(:disabled){background:#2a6898}
+    .a7 button.primary,.a7 .stage-nav button[aria-current="step"]{background:#1379c7}
+    .a7 input,.a7 textarea,.a7 select{background:#0b1e32;color:#fff;border:1px solid #688aa8;border-radius:8px}
+    .a7 .stage-nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+    .a7 .stage-nav button{font-size:14px;padding:10px 13px}
+    .a7 .note{background:#183d5b;border-left:4px solid #65baff}
+    .a7 .theory-slide{min-height:400px;background:radial-gradient(circle at top right,#194365,#10243d 70%);border:1px solid #41698a;border-radius:12px;padding:22px}
+    .a7 .theory-slide h3{font-size:clamp(24px,3vw,34px)}
+    .a7 .slide-controls{margin:16px 0;gap:12px}
+    .a7 .slide-controls button{min-height:44px}
+    .a7 .guided-help{background:#173a59;border:1px solid #426b8c;border-radius:10px;padding:14px;margin:12px 0}
+    .a7 .guided-help summary{color:#e7f6ff}
+    .a7 .checklist label{background:#17334f;border-color:#41698a}
+    @media(max-width:650px){.a7 .panel{padding:17px}.a7 .stage-nav button{flex:1 1 42%}.a7 .hero:after{opacity:.2}.a7 .theory-slide{min-height:320px}}
     @media(max-width:680px){
       .a7{padding:18px 14px 48px}
       .a7 .panel{padding:17px}
@@ -91,7 +117,8 @@
       .a7 #summary-panel>*:not(#a7-report){display:none!important}
       .a7 #a7-report{display:block!important;color:#111!important}
       .a7 #a7-report h1,.a7 #a7-report h2,.a7 #a7-report h3{color:#111!important}
-      .a7 #a7-report section{border-color:#bbb}\n      .a7 #a7-report .report-prompt{color:#222!important}
+      .a7 #a7-report section{border-color:#bbb}
+      .a7 #a7-report .report-prompt{color:#222!important}
       .a7 .report-answer{border-color:#bbb}
       .a7 a{color:#111}
     }
