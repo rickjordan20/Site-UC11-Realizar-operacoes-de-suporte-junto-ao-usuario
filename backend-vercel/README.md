@@ -1,17 +1,22 @@
-# UC11 — Backend de matrícula (Vercel, plano Hobby)
-Backend separado do site GitHub Pages; Firebase permanece no Spark.
+# Serviço de autorização UC11
+
+Esta pasta contém a implementação da função Vercel que valida o ID token do Firebase e consulta a matrícula no Google Classroom. A rota pública do projeto é `api/authorize.js` na raiz do repositório, que reexporta esta função para que o Vercel publique `/api/authorize` sem alterar as URLs das páginas estáticas.
 
 ## Implantação
-1. Crie projeto Vercel com **Root Directory** `backend-vercel` (ou publique somente essa pasta).
-2. Configure as variáveis **criptografadas** `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REFRESH_TOKEN` no projeto Vercel.
-3. A conta que emitiu o refresh token deve ser a do professor com acesso à turma **689889762928**, autorizando o escopo `https://www.googleapis.com/auth/classroom.rosters.readonly`. O cliente OAuth para essa autorização deve ter redirecionamento compatível com o fluxo utilizado. Não use o cliente Firebase automaticamente criado sem compreender o fluxo.
-4. Use a URL HTTPS pública da função, terminando em `/api/authorize`, em `auth-config.js` como `authorizationEndpoint` **somente depois de testar**.
-5. Teste: estudante matriculado → true; conta Google fora da turma → false; token inválido → 401; falta de credenciais → 503. Verifique os limites atuais do plano Hobby.
 
-## Segurança
-- O token Firebase é validado no servidor e a identidade Google vem do provedor autenticado, não do corpo enviado pelo navegador.
-- Consulta apenas leitura da lista de estudantes; sem divulgar o cadastro completo.
-- Segredos nunca devem ir ao GitHub ou ao frontend.
-- A origem autorizada por CORS não substitui a autenticação por token.
-- A autorização protege as APIs e o fluxo normal da interface; **não torna privados os arquivos estáticos publicados no GitHub Pages**.
-- O Firebase Spark não é alterado.
+1. Configure o projeto Vercel com a **raiz do repositório** como Root Directory. Não selecione `backend-vercel` como raiz: isso separaria a função do portal estático.
+2. Configure as variáveis privadas `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` e `GOOGLE_REFRESH_TOKEN`.
+3. A conta emissora do refresh token precisa consultar a lista de estudantes do curso `689889762928` com o escopo `https://www.googleapis.com/auth/classroom.rosters.readonly`.
+4. Opcionalmente, configure `CLASSROOM_COURSE_ID` e `APP_ORIGINS` (origens separadas por vírgula). Por padrão, são aceitos `https://uc11-classroom-auth.vercel.app` e `https://rickjordan20.github.io`.
+5. Confirme que `/api/authorize` está disponível no mesmo domínio apontado em `auth-config.js` e teste matrícula autorizada, matrícula ausente, token inválido e falha de configuração.
+
+## Segurança e limitações
+
+- O token Firebase é verificado no servidor; a identidade Google vem do token, não do corpo enviado pelo navegador.
+- A consulta ao Classroom é somente leitura e não retorna a lista de estudantes.
+- Segredos OAuth e refresh tokens devem existir apenas no ambiente privado do Vercel.
+- CORS não é autorização e não impede chamadas diretas de outros clientes.
+- O guard da interface não protege arquivos HTML estáticos acessados diretamente por URL.
+- O pacote raiz declara `jose` para que a função Vercel resolva a dependência quando publicada pela raiz. O `package.json` desta pasta continua útil para execução isolada local.
+
+Veja o procedimento de acesso em [`../README.md`](../README.md).

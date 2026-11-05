@@ -1,4 +1,4 @@
-import { firebaseConfig, authorizationEndpoint } from "./auth-config.js";
+import { firebaseConfig, authorizationEndpoint, classroomCourseId } from "./auth-config.js";
 const status = document.getElementById("auth-status");
 const login = document.getElementById("auth-login");
 const logout = document.getElementById("auth-logout");
@@ -26,7 +26,7 @@ if (!configured) {
         const response = await fetch(authorizationEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
-          body: JSON.stringify({ requestedClass: "2025.07.186" }),
+          body: JSON.stringify({ requestedClass: classroomCourseId }),
           cache: "no-store"
         });
         if (!response.ok) throw new Error("Não foi possível validar sua matrícula.");

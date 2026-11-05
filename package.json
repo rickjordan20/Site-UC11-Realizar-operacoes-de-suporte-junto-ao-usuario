@@ -1,0 +1,27 @@
+{
+  "name": "uc11-central-de-suporte",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "validate:html": "html-validate \"**/*.html\"",
+    "lint": "eslint .",
+    "check:links": "node scripts/check-links.mjs",
+    "test:ci": "npm run validate:html && npm run lint && npm run check:links"
+  },
+  "dependencies": {
+    "jose": "^6.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "eslint": "^10.14.0",
+    "globals": "^16.0.0",
+    "html-validate": "^11.18.0"
+  },
+  "overrides": {
+    "minimatch": "^11.0.1"
+  }
+}

@@ -3,8 +3,13 @@
 import { createRemoteJWKSet, jwtVerify } from "jose";
 
 const FIREBASE_PROJECT = "uc11---central-de-suporte";
-const COURSE_ID = "689889762928";
-const ORIGIN = "https://rickjordan20.github.io";
+const COURSE_ID = process.env.CLASSROOM_COURSE_ID || "689889762928";
+const ALLOWED_ORIGINS = new Set(
+  (process.env.APP_ORIGINS || "https://uc11-classroom-auth.vercel.app,https://rickjordan20.github.io")
+    .split(",")
+    .map(origin => origin.trim())
+    .filter(Boolean)
+);
 const firebaseKeys = createRemoteJWKSet(new URL("https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"));
 
 function reply(res, status, payload) {
@@ -51,13 +56,14 @@ async function isStudent(googleUserId, accessToken) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", ORIGIN);
   res.setHeader("Vary", "Origin");
+  const origin = req.headers.origin;
+  if (!origin || !ALLOWED_ORIGINS.has(origin)) return reply(res, 403, { authorized: false });
+  res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
   if (req.method === "OPTIONS") return res.status(204).end();
   if (req.method !== "POST") return reply(res, 405, { authorized: false });
-  if (req.headers.origin !== ORIGIN) return reply(res, 403, { authorized: false });
   const match = /^Bearer (.+)$/.exec(req.headers.authorization || "");
   if (!match) return reply(res, 401, { authorized: false });
   try {

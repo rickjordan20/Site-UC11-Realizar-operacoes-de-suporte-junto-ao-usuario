@@ -4,7 +4,7 @@
  const match=location.pathname.match(/(?:^|\/)(aula-(?:assincrona-)?\d+)\.html$/i);
  if(!match)return;
  const lesson=match[1],key='uc11-duration-v1:'+lesson;
- let start=Number(localStorage.getItem(key))||0;
+ let start=Number(UC11Storage.getItem(key))||0;
  const now=()=>Date.now();
  function begin(event){
   if(start)return;
@@ -12,7 +12,7 @@
   if(!target||target.closest('header,nav,footer,.senac-institutional-bar'))return;
   if(target.closest('a[href]'))return;
   if(!target.closest('main,section,article,form,#app,.a6'))return;
-  start=now();localStorage.setItem(key,String(start));
+  start=now();UC11Storage.setItem(key,String(start));
  }
  ['pointerdown','keydown','input','change'].forEach(type=>document.addEventListener(type,begin,{passive:true,capture:true}));
  function duration(){
