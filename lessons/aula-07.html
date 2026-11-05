@@ -60,6 +60,16 @@
     .a7 progress.progress::-webkit-progress-bar{background:#294761;border-radius:9px}
     .a7 progress.progress::-webkit-progress-value{background:#4bb4f7;border-radius:9px}
     .a7 progress.progress::-moz-progress-bar{background:#4bb4f7;border-radius:9px}
+    .a7 .theory-slide[hidden]{display:none}
+    .a7 .theory-slide{background:linear-gradient(135deg,#173b5b,#102a43);border:1px solid #507a99;border-radius:16px;padding:22px;min-height:220px}
+    .a7 .slide-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0}
+    .a7 .slide-controls button{min-width:110px}
+    .a7 .guided-help{background:#173b53;border:1px solid #4d819c;border-radius:12px;padding:16px;margin:12px 0}
+    .a7 .guided-help summary{cursor:pointer;font-weight:700;color:#aee6ff}
+    .a7 .guided-help li{margin:7px 0}
+    .a7 .report-case{break-inside:auto!important}
+    .a7 .report-case h3{break-after:avoid}
+    .a7 .report-prompt{white-space:pre-wrap;color:inherit}
     .a7 .report{display:none}
     .a7 .report section{border-top:1px solid #456b8a;padding:14px 0;break-inside:avoid}
     .a7 .report-answer{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #456b8a;border-radius:8px;padding:12px;min-height:42px}
@@ -81,7 +91,7 @@
       .a7 #summary-panel>*:not(#a7-report){display:none!important}
       .a7 #a7-report{display:block!important;color:#111!important}
       .a7 #a7-report h1,.a7 #a7-report h2,.a7 #a7-report h3{color:#111!important}
-      .a7 #a7-report section{border-color:#bbb}
+      .a7 #a7-report section{border-color:#bbb}\n      .a7 #a7-report .report-prompt{color:#222!important}
       .a7 .report-answer{border-color:#bbb}
       .a7 a{color:#111}
     }
@@ -136,6 +146,15 @@
         <article class="card"><h3>Continuidade e registro</h3><p>Informe quem acompanhará, qual será o próximo passo e como o usuário receberá novidades. Registre a comunicação no chamado conforme o processo da equipe.</p></article>
       </div>
 
+      <h3>Apresentação interativa — aprenda por situações</h3>
+      <p class="muted">Avance pelos quatro exemplos. Ao final, confira os conceitos nas três questões.</p>
+      <div id="a7-slide-deck" aria-label="Slides de comunicação profissional">
+        <article class="theory-slide" data-theory-slide="0"><p class="tag">SLIDE 1 · ACOLHER</p><h3>O usuário não consegue entrar no sistema</h3><p>Em vez de “Você digitou errado”, comece por “Entendi que você não consegue acessar. Qual mensagem aparece?”</p><div class="note"><strong>Observe:</strong> reconhecer a dificuldade não significa confirmar sua causa.</div></article>
+        <article class="theory-slide" data-theory-slide="1" hidden><p class="tag">SLIDE 2 · INFORMAR</p><h3>O incidente ainda está em análise</h3><p>Informe o que foi confirmado, o que está sendo investigado e como a pessoa poderá acompanhar o chamado.</p><div class="note"><strong>Evite:</strong> “Em dez minutos estará resolvido” quando não existe previsão confirmada.</div></article>
+        <article class="theory-slide" data-theory-slide="2" hidden><p class="tag">SLIDE 3 · ORIENTAR</p><h3>O acesso foi restabelecido</h3><p>“Atualizamos a permissão. Saia da conta, entre novamente e confirme se o ambiente abriu normalmente.”</p><div class="note"><strong>Observe:</strong> ação confirmada, instrução verificável e pedido de retorno.</div></article>
+        <article class="theory-slide" data-theory-slide="3" hidden><p class="tag">SLIDE 4 · ENCERRAR</p><h3>O usuário confirmou que funcionou</h3><p>Agradeça a confirmação, registre o resultado e informe o canal para novo contato caso o problema volte.</p><div class="note"><strong>Importante:</strong> não encerre como resolvido um problema que continua sem confirmação de solução.</div></article>
+      </div>
+      <div class="slide-controls no-print"><button type="button" id="a7-slide-prev" disabled>← Anterior</button><span id="a7-slide-counter" role="status" aria-live="polite">1 de 4</span><button type="button" id="a7-slide-next">Próximo →</button></div>
       <h3>Estrutura de uma devolutiva profissional</h3>
       <div class="grid">
         <article class="card structure"><h3>1. Identificação da solicitação</h3><p>Saudação adequada e breve confirmação do que a pessoa pediu. Isso demonstra escuta e permite corrigir um possível entendimento equivocado.</p></article>
@@ -191,7 +210,7 @@
 
     <section class="panel stage-panel" data-stage-panel="2" id="guided-panel" hidden>
       <h2>3. Prática guiada — TechEduca (75 min)</h2>
-      <p>Com o instrutor, elabore respostas para os quatro cenários da TechEduca. Para cada caso, identifique o pedido, descreva a orientação, indique o próximo passo, peça somente informações necessárias e encerre cordialmente. Reserve cerca de 15 minutos por cenário e 15 minutos para comparar as respostas.</p>
+      <p>Com o instrutor, elabore respostas para os quatro cenários da TechEduca. Os casos avançam da demonstração à autonomia: leia o apoio de cada cenário, discuta com o instrutor e produza sua própria devolutiva. Reserve cerca de 15 minutos por cenário e 15 minutos para comparar as respostas.</p>
       <p class="note">Os chamados são fictícios. Discuta com a turma como o canal e a urgência influenciam o tom e a quantidade de detalhes, sem alterar os fatos confirmados.</p>
       <article class="card case">
         <h3>Cenário 1 — Solução aplicada</h3>
@@ -199,6 +218,7 @@
         <label>Escreva a devolutiva, incluindo o teste solicitado e o que fazer se o acesso continuar indisponível.
           <textarea id="a7-guided-0" data-bind="guided.0" required minlength="30" maxlength="1600" placeholder="Olá... Sobre o acesso ao ambiente..."></textarea>
         </label>
+        <details class="guided-help"><summary>Passo a passo e exemplo comentado</summary><ol><li>Retome a dificuldade da professora.</li><li>Informe apenas a ação confirmada: permissão renovada.</li><li>Oriente um novo teste de acesso.</li><li>Peça retorno com a mensagem exibida, caso persista.</li></ol><p><strong>Exemplo de estrutura:</strong> “Olá! Verificamos o acesso e renovamos sua permissão. Por favor, tente entrar novamente. Se continuar indisponível, responda ao chamado com a mensagem exibida para seguirmos a análise.”</p><p>Use o exemplo para compreender a estrutura, não para copiar.</p></details>
       </article>
       <article class="card case">
         <h3>Cenário 2 — Solicitação de informações</h3>
@@ -206,6 +226,7 @@
         <label>Peça as informações que ajudam a localizar o caso e explique como enviá-las sem solicitar senha ou dados desnecessários.
           <textarea id="a7-guided-1" data-bind="guided.1" required minlength="30" maxlength="1600" placeholder="Olá... Para localizar a atividade, poderia informar..."></textarea>
         </label>
+        <details class="guided-help"><summary>Construa a resposta em três partes</summary><ol><li>Qual atividade não aparece? Solicite o nome ou identificação.</li><li>Em qual turma ou curso? Peça somente o necessário.</li><li>Como o estudante enviará as informações? Indique resposta ao próprio chamado.</li></ol><p>Agora una as três partes em uma mensagem cordial, sem solicitar senha.</p></details>
       </article>
       <article class="card case">
         <h3>Cenário 3 — Acompanhamento</h3>
@@ -213,6 +234,7 @@
         <label>Informe o status conhecido, reconheça o impacto e descreva como o acompanhamento será comunicado, sem prometer prazo.
           <textarea id="a7-guided-2" data-bind="guided.2" required minlength="30" maxlength="1600" placeholder="Olá... A instabilidade foi registrada e está em análise..."></textarea>
         </label>
+        <details class="guided-help"><summary>Reescrita: transforme uma resposta inadequada</summary><p><strong>Mensagem inadequada:</strong> “Isso não é comigo. Espere a outra equipe resolver e pare de perguntar.”</p><p>Identifique três problemas: falta de acolhimento, ausência de status verificável e nenhum canal de acompanhamento. Reescreva considerando o encaminhamento confirmado, sem prometer prazo.</p></details>
       </article>
       <article class="card case">
         <h3>Cenário 4 — Encerramento</h3>
@@ -220,6 +242,7 @@
         <label>Redija uma resposta final que confirme o resultado, agradeça o retorno e deixe claro como pedir ajuda caso a dificuldade volte.
           <textarea id="a7-guided-3" data-bind="guided.3" required minlength="30" maxlength="1600" placeholder="Olá... Obrigado por confirmar que..."></textarea>
         </label>
+        <details class="guided-help"><summary>Checklist de autonomia parcial</summary><ol><li>Confirme o resultado informado pela professora.</li><li>Agradeça o retorno.</li><li>Explique como pedir ajuda se a dificuldade reaparecer.</li><li>Não invente ações técnicas adicionais.</li></ol></details>
       </article>
       <p class="small muted">A prática guiada deve ser discutida com o instrutor; o sistema não avalia automaticamente a qualidade das respostas.</p>
       <div class="actions"><button type="button" data-prev>← Teoria</button><button type="button" class="primary" data-next>Ir para a prática autônoma →</button></div>
@@ -303,7 +326,7 @@
       </label>
       <fieldset class="checklist">
         <legend><strong>Checklist de qualidade da devolutiva</strong></legend>
-        <p>Marque cada item depois de revisar suas respostas.</p>
+        <p>Marque somente os critérios que você conseguiu atender. Itens não marcados indicam pontos a desenvolver e não bloqueiam a entrega.</p>
         <label><input type="checkbox" data-bind="checklist.0"> Identifiquei a solicitação e considerei a necessidade do usuário.</label>
         <label><input type="checkbox" data-bind="checklist.1"> Separei fatos confirmados de hipóteses e usei linguagem clara e cordial.</label>
         <label><input type="checkbox" data-bind="checklist.2"> Apresentei uma orientação objetiva ou pedi informações pertinentes.</label>
@@ -412,7 +435,7 @@
       const evaluationComplete = () => state.analysis.every(filled)
         && state.analysisNotes.every(value => longEnough(value, 25))
         && longEnough(state.reflection, 40)
-        && state.checklist.every(value => value === true);
+;
       const completion = [identified, theoryComplete, guidedComplete, autonomousComplete, evaluationComplete];
 
       function maxUnlockedStage() {
@@ -440,6 +463,18 @@
         feedback.textContent = answered === 3 ? messages.join(" ") : "Selecione uma opção em cada situação. Você poderá revisar suas respostas no resumo.";
       }
 
+      const slides = Array.from(document.querySelectorAll("[data-theory-slide]"));
+      let slideIndex = 0;
+      function showSlide(index) {
+        slideIndex = Math.max(0, Math.min(slides.length - 1, index));
+        slides.forEach((slide, i) => { slide.hidden = i !== slideIndex; });
+        document.getElementById("a7-slide-counter").textContent = (slideIndex + 1) + " de " + slides.length;
+        document.getElementById("a7-slide-prev").disabled = slideIndex === 0;
+        document.getElementById("a7-slide-next").disabled = slideIndex === slides.length - 1;
+      }
+      document.getElementById("a7-slide-prev").addEventListener("click", () => showSlide(slideIndex - 1));
+      document.getElementById("a7-slide-next").addEventListener("click", () => showSlide(slideIndex + 1));
+
       function renderReport() {
         const report = document.getElementById("a7-report");
         const escape = value => String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -451,9 +486,20 @@
           ["Solução aplicada", "Solicitação de informações", "Acompanhamento", "Encerramento"],
           ["Solicitação de informações", "Atualização de status", "Escalonamento", "Solução aplicada", "Encerramento"]
         ];
-        const guided = state.guided.map((value, index) => `<h3>TechEduca — ${index + 1}. ${scenarioNames[0][index]}</h3>${answer(value)}`).join("");
-        const autonomous = state.autonomous.map((value, index) => `<h3>Café Central — ${index + 1}. ${scenarioNames[1][index]}</h3>${answer(value)}`).join("");
-        const analysis = state.analysis.map((value, index) => `<h3>Análise ${index + 1}</h3><p><strong>Avaliação:</strong> ${escape(value || "Não respondida")}</p>${answer(state.analysisNotes[index])}`).join("");
+        const scenarioData = [2, 3].map(stage => Array.from(panels[stage].querySelectorAll(".case")).map(card => ({
+          title: card.querySelector("h3")?.textContent || "",
+          context: card.querySelector("p")?.textContent || "",
+          instruction: card.querySelector("label")?.childNodes[0]?.textContent.trim() || ""
+        })));
+        const renderCases = (cases, answers, project) => cases.map((item, index) =>
+          '<section class="report-case"><h3>' + escape(project + ' — ' + (index + 1) + '. ' + item.title) + '</h3>' +
+          '<p class="report-prompt"><strong>Situação:</strong> ' + escape(item.context) + '</p>' +
+          '<p class="report-prompt"><strong>Enunciado:</strong> ' + escape(item.instruction) + '</p>' +
+          '<strong>Resposta do estudante:</strong>' + answer(answers[index]) + '</section>'
+        ).join("");
+        const guided = renderCases(scenarioData[0], state.guided, "TechEduca");
+        const autonomous = renderCases(scenarioData[1], state.autonomous, "Café Central");
+        const analysis = state.analysis.map((value, index) => `<h3>Análise ${index + 1}</h3><p><strong>Mensagem analisada:</strong> ${escape(panels[4].querySelectorAll(".card")[index]?.querySelector("p")?.textContent || "")}</p><p><strong>Avaliação:</strong> ${escape(document.querySelector(`#a7-analysis-${index} option[value="${value}"]`)?.textContent || "Não respondida")}</p><strong>Justificativa:</strong>${answer(state.analysisNotes[index])}`).join("");
         const checklistItems = [
           "Identifiquei a solicitação e considerei a necessidade do usuário.",
           "Separei fatos confirmados de hipóteses e usei linguagem clara e cordial.",
@@ -462,7 +508,7 @@
           "Evitei solicitar ou divulgar dados sensíveis e indiquei um encerramento adequado."
         ];
         const checklist = checklistItems.map((item, index) => `<li>${state.checklist[index] ? "Concluído" : "Pendente"} — ${escape(item)}</li>`).join("");
-        const theory = state.theory.map((value, index) => `<p><strong>Situação ${index + 1}:</strong> ${escape(value || "Não respondida")}</p>`).join("");
+        const theory = state.theory.map((value, index) => `<p><strong>Questão ${index + 1}:</strong> ${escape(document.querySelector(`label:has(#a7-theory-${index})`)?.childNodes[0]?.textContent.trim() || "")}<br><strong>Resposta:</strong> ${escape(document.querySelector(`#a7-theory-${index} option[value="${value}"]`)?.textContent || "Não respondida")}</p>`).join("");
         const duration = window.UC11LessonTime?.summary() || "Tempo de realização não disponível.";
         report.innerHTML = `<h1>UC11 · Aula 7 — Respostas e Devolutivas</h1><p><strong>Estudante:</strong> ${escape(state.student)}</p><p><strong>Turma:</strong> 2025.07.186 · <strong>Indicador:</strong> I2 — Realiza devolutiva ao usuário conforme necessidade identificada.</p>${section("Teoria contextualizada", theory)}${section("Prática guiada — TechEduca", guided)}${section("Prática autônoma — Café Central", autonomous)}${section("Avaliação formativa", analysis + "<h3>Reflexão</h3>" + answer(state.reflection) + "<h3>Checklist de qualidade</h3><ul>" + checklist + "</ul>")}<section><h2>Tempo de realização</h2><p>${escape(duration)}</p></section><p>Registro para conferência do instrutor. As respostas não recebem nota automática nem são enviadas automaticamente ao Classroom.</p>`;
         report.style.display = "block";
@@ -514,7 +560,7 @@
           "Responda às três situações da teoria.",
           "Escreva uma devolutiva para cada cenário da TechEduca (mínimo de 30 caracteres por resposta).",
           "Escreva uma devolutiva para cada chamado do Café Central (mínimo de 30 caracteres por resposta).",
-          "Conclua as duas análises, justifique-as, escreva a reflexão e marque todos os itens do checklist."
+          "Conclua as duas análises, justifique-as e escreva a reflexão. Use o checklist para identificar avanços e pontos a melhorar."
         ];
         return missing[index] || "";
       }
