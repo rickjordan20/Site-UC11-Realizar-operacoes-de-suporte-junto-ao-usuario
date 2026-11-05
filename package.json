@@ -10,7 +10,8 @@
     "validate:html": "html-validate \"**/*.html\"",
     "lint": "eslint .",
     "check:links": "node scripts/check-links.mjs",
-    "test:ci": "npm run validate:html && npm run lint && npm run check:links"
+    "check:redirects": "node scripts/check-redirects.mjs",
+    "test:ci": "npm run validate:html && npm run lint && npm run check:links && npm run check:redirects"
   },
   "dependencies": {
     "jose": "^6.0.0"

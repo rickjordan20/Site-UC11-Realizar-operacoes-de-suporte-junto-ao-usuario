@@ -30,12 +30,12 @@ O portal reúne calendário, indicadores, aulas, atividades assíncronas, autoav
 
 | Aula | Data | Tema | Indicador | Página |
 |---|---|---|---|---|
-| 1 | 21/10/2026 | Introdução ao Suporte Técnico e à Central de Serviços | I1 | `aula-1.html` |
-| 2 | 22/10/2026 | Identificação das Necessidades e Perfis dos Usuários | I1 | `aula-2.html` |
-| 3 | 26/10/2026 | Tipos de Chamados | I1 | `aula-3.html` |
-| 4 | 27/10/2026 | Registro, Categorização e Diagnóstico Inicial | I1 | `aula-4.html` |
-| 5 | 29/10/2026 | Comunicação Profissional e Atendimento Humanizado | I2 | `aula-5.html` |
-| 6 | 03/11/2026 | Canais de Atendimento | I1 · I2 | `aula-6.html` |
+| 1 | 21/10/2026 | Introdução ao Suporte Técnico e à Central de Serviços | I1 | `lessons/aula-01.html` |
+| 2 | 22/10/2026 | Identificação das Necessidades e Perfis dos Usuários | I1 | `lessons/aula-02.html` |
+| 3 | 26/10/2026 | Tipos de Chamados | I1 | `lessons/aula-03.html` |
+| 4 | 27/10/2026 | Registro, Categorização e Diagnóstico Inicial | I1 | `lessons/aula-04.html` |
+| 5 | 29/10/2026 | Comunicação Profissional e Atendimento Humanizado | I2 | `lessons/aula-05.html` |
+| 6 | 03/11/2026 | Canais de Atendimento | I1 · I2 | `lessons/aula-06.html` |
 
 As aulas 7–17 estão planejadas, mas ainda não têm páginas. As atividades assíncronas 1 e 2 existem; 3 e 4 estão planejadas.
 

@@ -1,0 +1,12 @@
+{
+  "redirects": [
+    { "source": "/aula-1.html", "destination": "/lessons/aula-01.html", "permanent": true },
+    { "source": "/aula-2.html", "destination": "/lessons/aula-02.html", "permanent": true },
+    { "source": "/aula-3.html", "destination": "/lessons/aula-03.html", "permanent": true },
+    { "source": "/aula-4.html", "destination": "/lessons/aula-04.html", "permanent": true },
+    { "source": "/aula-5.html", "destination": "/lessons/aula-05.html", "permanent": true },
+    { "source": "/aula-6.html", "destination": "/lessons/aula-06.html", "permanent": true },
+    { "source": "/aula-assincrona-1.html", "destination": "/lessons/aula-assincrona-01.html", "permanent": true },
+    { "source": "/aula-assincrona-2.html", "destination": "/lessons/aula-assincrona-02.html", "permanent": true }
+  ]
+}
