@@ -126,6 +126,40 @@
       .a7 .stage-nav button{flex:1 1 42%}
       .a7 textarea{min-height:125px}
     }
+
+    /* Acabamento editorial: hierarquia sóbria, menos caixas e ornamentos */
+    .a7{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;letter-spacing:-.006em}
+    .a7 .hero{background:linear-gradient(115deg,#112c45,#173c5b);border-color:#355b78;padding:30px 32px}
+    .a7 .hero:after{display:none}
+    .a7 .hero h1{font-size:clamp(28px,3.4vw,39px);letter-spacing:-.035em;line-height:1.16;margin:12px 0}
+    .a7 .hero p{max-width:660px;color:#c9deed}
+    .a7 .tag{font-size:11px;letter-spacing:.11em;text-transform:uppercase}
+    .a7 .panel{box-shadow:none}
+    .a7 .card{box-shadow:none}
+    .a7 .stage-nav{gap:7px;margin:22px 0 16px}
+    .a7 .stage-nav button{border-color:#355b78;background:#142e46;font-size:13px;line-height:1.35}
+    .a7 .stage-nav button[aria-current="step"]{background:#205b84;border-color:#6eadd4}
+    .a7 .slide-view{background:#132d45;border:1px solid #355a78;border-radius:14px;min-height:365px;padding:28px 30px}
+    .a7 .theory-slide h3{font-size:clamp(23px,3vw,31px);letter-spacing:-.025em;max-width:650px;margin:12px 0 18px}
+    .a7 .slide-lead{font-size:clamp(17px,2.2vw,20px);font-weight:500;color:#d6e5f1;margin:12px 0 20px}
+    .a7 .slide-quiz{gap:8px}
+    .a7 .slide-quiz button,.a7 .slide-build button{border:1px solid #3b5b74;border-radius:9px;background:#1b3b55;padding:15px 17px;font-size:15px;line-height:1.5;transition:background .16s,border-color .16s}
+    .a7 .slide-quiz button:hover:not(:disabled),.a7 .slide-build button:hover{background:#244a67;border-color:#79a8c6}
+    .a7 .slide-quiz button.selected,.a7 .slide-build button.selected{background:#224c67;border-color:#85b6d5}
+    .a7 .slide-feedback{margin:5px 0 0;font-size:14px;font-weight:500;line-height:1.5}
+    .a7 .slide-feedback.correct{color:#9bdcbb}
+    .a7 .slide-takeaway{background:#1a3b52;border-left:3px solid #6abfa4;border-radius:6px;padding:12px 15px;font-size:14px;font-weight:550}
+    .a7 .slide-flip-grid{gap:10px}
+    .a7 .slide-flip{background:#1b3b55;border:1px solid #3b5b74;border-radius:9px;font-size:15px;min-height:90px;padding:16px;line-height:1.45}
+    .a7 .slide-flip[aria-pressed="true"]{background:#224c67;border-color:#85b6d5}
+    .a7 .slide-controls{margin:12px 0 4px}
+    .a7 .slide-controls button{font-size:14px;padding:10px 16px}
+    .a7 .slide-controls #a7-slide-counter{font-size:13px;font-weight:600;color:#aec9dc}
+    .a7 .structure{border-left-width:3px}
+    .a7 .guided-help{border-radius:9px}
+    .a7 .grid{gap:14px}
+    .a7 .card h3{letter-spacing:-.012em}
+    @media(max-width:650px){.a7 .hero{padding:22px 18px}.a7 .slide-view{padding:20px 17px;min-height:320px}.a7 .slide-controls{gap:8px}.a7 .slide-controls button{padding:9px 11px}.a7 .slide-flip{min-height:74px}}
     @media print{
       @page{size:A4;margin:15mm}
       body>*:not(main){display:none!important}
@@ -192,19 +226,19 @@
         <article class="card"><h3>Continuidade e registro</h3><p>Informe quem acompanhará, qual será o próximo passo e como o usuário receberá novidades. Registre a comunicação no chamado conforme o processo da equipe.</p></article>
       </div>
 
-      <h3>Missão interativa — fale como um técnico de suporte</h3>
-      <p class="muted">10 desafios curtos. Escolha, descubra e monte respostas — sem precisar ler textos longos.</p>
+      <h3>Na prática: como responder ao usuário</h3>
+      <p class="muted">Explore as situações, escolha uma resposta e veja o que funciona no atendimento.</p>
       <section id="a7-slide-deck" class="card slide-view" aria-label="Desafios interativos de comunicação">
-        <article class="theory-slide" data-theory-slide="0"><span class="tag">DESAFIO 1 DE 10 · 4 min</span><h3>Qual resposta ajuda de verdade?</h3><p class="slide-lead">A atividade não abre. Qual técnico você escolheria?</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">🙄 “Aqui funciona. Tenta de novo.”</button><button type="button" data-choice="b">🤝 “Entendi! Qual erro aparece? Vamos verificar.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha uma resposta.</p></div><div class="slide-takeaway">💡 Acolher + perguntar + agir.</div></article>
-        <article class="theory-slide" data-theory-slide="1" hidden><span class="tag">DESAFIO 2 DE 10 · 4 min</span><h3>Devolutiva: o que é isso?</h3><p class="slide-lead">É dar um retorno útil sobre o chamado.</p><div class="slide-flip-grid"><button type="button" class="slide-flip" data-front="📩 Pedir informação" data-back="Qual erro aparece na tela?">📩 Pedir informação</button><button type="button" class="slide-flip" data-front="🔎 Atualizar" data-back="Estamos analisando. Ainda sem prazo.">🔎 Atualizar</button><button type="button" class="slide-flip" data-front="🛠️ Orientar" data-back="Tente entrar novamente e me conte o resultado.">🛠️ Orientar</button><button type="button" class="slide-flip" data-front="✅ Encerrar" data-back="Obrigado por confirmar que funcionou!">✅ Encerrar</button></div><p class="small muted">Toque nos cartões para revelar exemplos.</p></article>
-        <article class="theory-slide" data-theory-slide="2" hidden><span class="tag">DESAFIO 3 DE 10 · 5 min</span><h3>Monte uma resposta em 3 partes</h3><p class="slide-lead">Um chamado diz: “Não consigo entrar na TechEduca”.</p><div class="slide-build" data-parts="3"><button type="button" data-part="0">1. 🤝 “Entendi a dificuldade.”</button><button type="button" data-part="1">2. 🔎 “Qual mensagem aparece?”</button><button type="button" data-part="2">3. ➡️ “Vamos verificar seu acesso.”</button><p class="slide-feedback" role="status" aria-live="polite">Clique nas três partes para montar a resposta.</p></div></article>
-        <article class="theory-slide" data-theory-slide="3" hidden><span class="tag">DESAFIO 4 DE 10 · 5 min</span><h3>Fato ou chute?</h3><p class="slide-lead">O sistema está lento. A causa ainda é desconhecida.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">🟢 “A equipe está investigando. Ainda não temos previsão.”</button><button type="button" data-choice="b">🔴 “O servidor caiu. Volta em 10 minutos.”</button><p class="slide-feedback" role="status" aria-live="polite">Qual mensagem é segura?</p></div><div class="slide-takeaway">💡 Nunca invente causa ou prazo.</div></article>
-        <article class="theory-slide" data-theory-slide="4" hidden><span class="tag">DESAFIO 5 DE 10 · 4 min</span><h3>Traduza o 'tecniquês'</h3><p class="slide-lead">“Limpe o cache e valide as credenciais.” 😵</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">“Execute os procedimentos padrão.”</button><button type="button" data-choice="b">“Feche a página, abra novamente e tente entrar.”</button><p class="slide-feedback" role="status" aria-live="polite">Qual orientação é mais fácil de seguir?</p></div></article>
-        <article class="theory-slide" data-theory-slide="5" hidden><span class="tag">DESAFIO 6 DE 10 · 4 min</span><h3>Dados: pode pedir ou não?</h3><p class="slide-lead">Um pedido sumiu no Café Central. Selecione o dado adequado.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">🧾 Número do pedido</button><button type="button" data-choice="b">🔑 Senha da conta</button><button type="button" data-choice="c">📲 Código de autenticação</button><p class="slide-feedback" role="status" aria-live="polite">Escolha uma opção.</p></div><div class="slide-takeaway">🔒 Senhas e códigos nunca devem ser solicitados.</div></article>
-        <article class="theory-slide" data-theory-slide="6" hidden><span class="tag">DESAFIO 7 DE 10 · 5 min</span><h3>Quem resolve agora?</h3><p class="slide-lead">O suporte verificou o relatório, mas a divergência continua.</p><div class="slide-quiz" data-correct="c"><button type="button" data-choice="a">“Não é comigo.”</button><button type="button" data-choice="b">“Aguarde, sem previsão de notícias.”</button><button type="button" data-choice="c">“Encaminhamos à equipe responsável e atualizaremos o chamado.”</button><p class="slide-feedback" role="status" aria-live="polite">Qual é o próximo passo profissional?</p></div></article>
-        <article class="theory-slide" data-theory-slide="7" hidden><span class="tag">DESAFIO 8 DE 10 · 4 min</span><h3>Missão: solução aplicada</h3><p class="slide-lead">A fila de impressão estava pausada. O teste funcionou.</p><div class="slide-build" data-parts="3"><button type="button" data-part="0">🛠️ “Retomamos a fila de impressão.”</button><button type="button" data-part="1">🧪 “O teste foi concluído com sucesso.”</button><button type="button" data-part="2">🙋 “Pode confirmar se voltou a imprimir?”</button><p class="slide-feedback" role="status" aria-live="polite">Clique nos três elementos da devolutiva.</p></div></article>
-        <article class="theory-slide" data-theory-slide="8" hidden><span class="tag">DESAFIO 9 DE 10 · 4 min</span><h3>Pode encerrar o chamado?</h3><p class="slide-lead">A gerente confirmou que o relatório voltou ao normal.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">✅ Agradecer, registrar a confirmação e encerrar.</button><button type="button" data-choice="b">❌ Encerrar sem registrar o resultado.</button><p class="slide-feedback" role="status" aria-live="polite">O que você faria?</p></div></article>
-        <article class="theory-slide" data-theory-slide="9" hidden><span class="tag">DESAFIO 10 DE 10 · 6 min</span><h3>Desafio final: você é o suporte!</h3><p class="slide-lead">“Não consigo enviar o arquivo!” A equipe ainda está investigando.</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">“Já resolvemos. Tente amanhã.”</button><button type="button" data-choice="b">“Registramos o erro. Qual mensagem aparece? Atualizaremos o chamado.”</button><button type="button" data-choice="c">“O problema é seu computador.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha a melhor devolutiva.</p></div><div class="slide-takeaway">🎯 Pronto para atender os chamados da TechEduca!</div></article>
+        <article class="theory-slide" data-theory-slide="0"><span class="tag">DESAFIO 1 DE 10 · 4 min</span><h3>Uma resposta que realmente ajuda</h3><p class="slide-lead">A atividade não abre. Qual técnico você escolheria?</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">🙄 “Aqui funciona. Tenta de novo.”</button><button type="button" data-choice="b">🤝 “Entendi! Qual erro aparece? Vamos verificar.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha a resposta mais adequada.</p></div><div class="slide-takeaway">Uma boa resposta reconhece o problema e indica o próximo passo.</div></article>
+        <article class="theory-slide" data-theory-slide="1" hidden><span class="tag">DESAFIO 2 DE 10 · 4 min</span><h3>O retorno que o usuário espera</h3><p class="slide-lead">É dar um retorno útil sobre o chamado.</p><div class="slide-flip-grid"><button type="button" class="slide-flip" data-front="📩 Pedir informação" data-back="Qual erro aparece na tela?">📩 Pedir informação</button><button type="button" class="slide-flip" data-front="🔎 Atualizar" data-back="Estamos analisando. Ainda sem prazo.">🔎 Atualizar</button><button type="button" class="slide-flip" data-front="🛠️ Orientar" data-back="Tente entrar novamente e me conte o resultado.">🛠️ Orientar</button><button type="button" class="slide-flip" data-front="✅ Encerrar" data-back="Obrigado por confirmar que funcionou!">✅ Encerrar</button></div><p class="small muted">Toque nos cartões para revelar exemplos.</p></article>
+        <article class="theory-slide" data-theory-slide="2" hidden><span class="tag">DESAFIO 3 DE 10 · 5 min</span><h3>Uma boa resposta, passo a passo</h3><p class="slide-lead">Um chamado diz: “Não consigo entrar na TechEduca”.</p><div class="slide-build" data-parts="3"><button type="button" data-part="0">1. 🤝 “Entendi a dificuldade.”</button><button type="button" data-part="1">2. 🔎 “Qual mensagem aparece?”</button><button type="button" data-part="2">3. ➡️ “Vamos verificar seu acesso.”</button><p class="slide-feedback" role="status" aria-live="polite">Clique nas três partes para montar a resposta.</p></div></article>
+        <article class="theory-slide" data-theory-slide="3" hidden><span class="tag">DESAFIO 4 DE 10 · 5 min</span><h3>O que sabemos até agora?</h3><p class="slide-lead">O sistema está lento. A causa ainda é desconhecida.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">🟢 “A equipe está investigando. Ainda não temos previsão.”</button><button type="button" data-choice="b">🔴 “O servidor caiu. Volta em 10 minutos.”</button><p class="slide-feedback" role="status" aria-live="polite">Qual mensagem é segura?</p></div><div class="slide-takeaway">Não informe causas ou prazos que ainda não foram confirmados.</div></article>
+        <article class="theory-slide" data-theory-slide="4" hidden><span class="tag">DESAFIO 5 DE 10 · 4 min</span><h3>Explique sem complicar</h3><p class="slide-lead">“Limpe o cache e valide as credenciais.” 😵</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">“Execute os procedimentos padrão.”</button><button type="button" data-choice="b">“Feche a página, abra novamente e tente entrar.”</button><p class="slide-feedback" role="status" aria-live="polite">Qual orientação é mais fácil de seguir?</p></div></article>
+        <article class="theory-slide" data-theory-slide="5" hidden><span class="tag">DESAFIO 6 DE 10 · 4 min</span><h3>Quais dados precisamos?</h3><p class="slide-lead">Um pedido sumiu no Café Central. Selecione o dado adequado.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">🧾 Número do pedido</button><button type="button" data-choice="b">🔑 Senha da conta</button><button type="button" data-choice="c">📲 Código de autenticação</button><p class="slide-feedback" role="status" aria-live="polite">Escolha uma opção.</p></div><div class="slide-takeaway">Nunca peça senhas ou códigos de autenticação.</div></article>
+        <article class="theory-slide" data-theory-slide="6" hidden><span class="tag">DESAFIO 7 DE 10 · 5 min</span><h3>Quando outra equipe precisa atuar</h3><p class="slide-lead">O suporte verificou o relatório, mas a divergência continua.</p><div class="slide-quiz" data-correct="c"><button type="button" data-choice="a">“Não é comigo.”</button><button type="button" data-choice="b">“Aguarde, sem previsão de notícias.”</button><button type="button" data-choice="c">“Encaminhamos à equipe responsável e atualizaremos o chamado.”</button><p class="slide-feedback" role="status" aria-live="polite">Qual é o próximo passo profissional?</p></div></article>
+        <article class="theory-slide" data-theory-slide="7" hidden><span class="tag">DESAFIO 8 DE 10 · 4 min</span><h3>Como comunicar uma solução</h3><p class="slide-lead">A fila de impressão estava pausada. O teste funcionou.</p><div class="slide-build" data-parts="3"><button type="button" data-part="0">🛠️ “Retomamos a fila de impressão.”</button><button type="button" data-part="1">🧪 “O teste foi concluído com sucesso.”</button><button type="button" data-part="2">🙋 “Pode confirmar se voltou a imprimir?”</button><p class="slide-feedback" role="status" aria-live="polite">Clique nos três elementos da devolutiva.</p></div></article>
+        <article class="theory-slide" data-theory-slide="8" hidden><span class="tag">DESAFIO 9 DE 10 · 4 min</span><h3>Quando encerrar o atendimento</h3><p class="slide-lead">A gerente confirmou que o relatório voltou ao normal.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">✅ Agradecer, registrar a confirmação e encerrar.</button><button type="button" data-choice="b">❌ Encerrar sem registrar o resultado.</button><p class="slide-feedback" role="status" aria-live="polite">O que você faria?</p></div></article>
+        <article class="theory-slide" data-theory-slide="9" hidden><span class="tag">DESAFIO 10 DE 10 · 6 min</span><h3>Agora é com você</h3><p class="slide-lead">“Não consigo enviar o arquivo!” A equipe ainda está investigando.</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">“Já resolvemos. Tente amanhã.”</button><button type="button" data-choice="b">“Registramos o erro. Qual mensagem aparece? Atualizaremos o chamado.”</button><button type="button" data-choice="c">“O problema é seu computador.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha a melhor devolutiva.</p></div><div class="slide-takeaway">A seguir: pratique com os chamados da TechEduca.</div></article>
       </section>
       <div class="slide-controls no-print"><button type="button" id="a7-slide-prev" disabled>← Anterior</button><span id="a7-slide-counter" role="status" aria-live="polite">Desafio 1 de 10</span><button type="button" id="a7-slide-next">Próximo →</button></div>
       <h3>Estrutura de uma devolutiva profissional</h3>
@@ -536,8 +570,8 @@
               option.setAttribute("aria-pressed", String(option === button));
             });
             quiz.querySelector(".slide-feedback").textContent = correct
-              ? "✓ Correto! A resposta apresenta informações verificáveis e orienta com responsabilidade."
-              : "Revise: evite suposições, dados sensíveis e promessas sem confirmação. Tente outra alternativa.";
+              ? "Boa escolha. A resposta é clara e não faz promessas sem confirmação."
+              : "Essa opção pode gerar confusão. Tente outra.";
             quiz.querySelector(".slide-feedback").classList.toggle("correct", correct);
           });
         });
@@ -560,7 +594,7 @@
             button.classList.toggle("selected", selected);
             const count = group.querySelectorAll('button[aria-pressed="true"]').length;
             group.querySelector(".slide-feedback").textContent = count === Number(group.dataset.parts)
-              ? "✓ Excelente! Você reuniu os elementos de uma devolutiva clara."
+              ? "Resposta completa: você reuniu os três elementos."
               : count + " de " + group.dataset.parts + " elementos selecionados.";
           });
         });
