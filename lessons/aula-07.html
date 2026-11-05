@@ -254,8 +254,7 @@
         <article class="theory-slide" data-theory-slide="7" hidden><span class="tag">DESAFIO 8 DE 11 · 4 min</span><h3>Como comunicar uma solução</h3><p class="slide-lead">A fila de impressão estava pausada. O teste funcionou.</p><div class="slide-build" data-parts="3"><button type="button" data-part="0">🛠️ “Retomamos a fila de impressão.”</button><button type="button" data-part="1">🧪 “O teste foi concluído com sucesso.”</button><button type="button" data-part="2">🙋 “Pode confirmar se voltou a imprimir?”</button><p class="slide-feedback" role="status" aria-live="polite">Clique nos três elementos da devolutiva.</p></div></article>
         <article class="theory-slide" data-theory-slide="8" hidden><span class="tag">DESAFIO 9 DE 11 · 4 min</span><h3>Quando encerrar o atendimento</h3><p class="slide-lead">A gerente confirmou que o relatório voltou ao normal.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">✅ Agradecer, registrar a confirmação e encerrar.</button><button type="button" data-choice="b">❌ Encerrar sem registrar o resultado.</button><p class="slide-feedback" role="status" aria-live="polite">O que você faria?</p></div></article>
         <article class="theory-slide" data-theory-slide="9" hidden><span class="tag">DESAFIO 10 DE 11 · 6 min</span><h3>Agora é com você</h3><p class="slide-lead">“Não consigo enviar o arquivo!” A equipe ainda está investigando.</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">“Já resolvemos. Tente amanhã.”</button><button type="button" data-choice="b">“Registramos o erro. Qual mensagem aparece? Atualizaremos o chamado.”</button><button type="button" data-choice="c">“O problema é seu computador.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha a melhor devolutiva.</p></div><div class="slide-takeaway">A seguir: pratique com os chamados da TechEduca.</div></article>
-        <article class="theory-slide" data-theory-slide="10" hidden><span class="tag">REVISÃO INTERATIVA · 3 QUESTÕES</span><h3>Confira o que aprendeu</h3><p class="slide-lead">Responda às três situações para seguir à prática. Você pode revisar suas escolhas.</p><div class="a7-theory-check">      <h3>Confira sua compreensão</h3>
-      <p>Responda às situações para avançar. A atividade é formativa: a seleção não gera nota automática.</p>
+        <article class="theory-slide" data-theory-slide="10" hidden><span class="tag">REVISÃO INTERATIVA · 3 QUESTÕES</span><h3>Confira o que aprendeu</h3><p class="slide-lead">Responda às três situações para seguir à prática. Você pode revisar suas escolhas.</p><div class="a7-theory-check"><p class="muted">Atividade formativa, sem nota automática.</p>
       <label>1. O que deve vir primeiro ao responder a um pedido?
         <select id="a7-theory-0" data-bind="theory.0" required>
           <option value="">Selecione uma resposta</option>
@@ -721,8 +720,12 @@
         button.addEventListener("click", () => {
           if (!completion[activeStage]()) {
             warning.textContent = missingFor(activeStage);
+            if (activeStage === 1) {
+              showSlide(slides.length - 1);
+              document.getElementById("a7-slide-deck").scrollIntoView({ behavior: "smooth", block: "start" });
+            }
             const firstInvalid = panels[activeStage].querySelector(":invalid");
-            if (firstInvalid) firstInvalid.focus();
+            if (firstInvalid) firstInvalid.focus({ preventScroll: activeStage === 1 });
             return;
           }
           showStage(activeStage + 1);
