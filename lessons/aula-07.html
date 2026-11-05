@@ -92,9 +92,9 @@
     .a7 .stage-nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
     .a7 .stage-nav button{font-size:14px;padding:10px 13px}
     .a7 .note{background:#183d5b;border-left:4px solid #65baff}
-    .a7 .theory-slide{min-height:400px;background:radial-gradient(circle at top right,#194365,#10243d 70%);border:1px solid #41698a;border-radius:12px;padding:22px}
-    .a7 .theory-slide h3{font-size:clamp(24px,3vw,34px)}
-    .a7 .slide-controls{margin:16px 0;gap:12px}
+    .a7 .slide-view{min-height:400px;background:radial-gradient(circle at top right,#194365,#10243d 70%);border:1px solid #41698a;border-radius:12px;padding:22px}\n    .a7 .theory-slide{min-height:0;background:transparent;border:0;border-radius:0;padding:0}
+    .a7 .theory-slide h3{font-size:clamp(24px,3vw,34px)}\n    .a7 .theory-slide .tag{display:inline-block;margin-bottom:10px}
+    .a7 .slide-controls{margin:16px 0;gap:12px;justify-content:space-between}\n    .a7 .slide-controls #a7-slide-counter{color:#83d0ff;font-weight:750}
     .a7 .slide-controls button{min-height:44px}
     .a7 .theory-slide .grid>.card{margin:8px 0}
     .a7 .slide-good{border-left:4px solid #65d3a4}
@@ -105,7 +105,7 @@
     .a7 .slide-quiz button{text-align:left;white-space:normal;min-height:55px;background:#17334f}
     .a7 .slide-quiz button.selected{background:#19476a;border-color:#55c4ff}
     .a7 .slide-feedback{min-height:24px;color:#ffdda2;font-weight:650}
-    .a7 .slide-feedback.correct{color:#a9e6c8}
+    .a7 .slide-feedback.correct{color:#a9e6c8}\n    .a7 .slide-quiz button:focus-visible,.a7 .theory-slide summary:focus-visible{outline:3px solid #ffd77a;outline-offset:3px}
     .a7 .guided-help{background:#173a59;border:1px solid #426b8c;border-radius:10px;padding:14px;margin:12px 0}
     .a7 .guided-help summary{color:#e7f6ff}
     .a7 .checklist label{background:#17334f;border-color:#41698a}
@@ -185,7 +185,7 @@
 
       <h3>Apresentação interativa — devolutivas profissionais</h3>
       <p class="muted">Dez slides contextualizados, com comparações, cartões, perguntas e feedback imediato, seguindo o formato da Aula 5. Navegue e explore as interações antes de avançar.</p>
-      <section id="a7-slide-deck" aria-label="Slides de comunicação profissional">
+      <section id="a7-slide-deck" class="card slide-view" aria-label="Slides de comunicação profissional">
         <article class="theory-slide" data-theory-slide="0"><span class="tag">SLIDE 1 DE 10 · 4 min</span><h3>Você já recebeu uma resposta que não ajudou?</h3><p>Uma estudante não consegue abrir a atividade e recebe duas mensagens:</p><div class="grid"><div class="card slide-bad"><strong>✕ Resposta A</strong><p>“Aqui funciona. Tenta de novo.”</p></div><div class="card slide-good"><strong>✓ Resposta B</strong><p>“Entendi que a atividade não abre. Qual mensagem aparece na tela? Vamos verificar seu acesso.”</p></div></div><details><summary>💬 Qual resposta permite continuar o atendimento?</summary><p>A B: acolhe, solicita uma evidência pertinente e informa o próximo passo, sem presumir a causa.</p></details></article>
         <article class="theory-slide" data-theory-slide="1" hidden><span class="tag">SLIDE 2 DE 10 · 4 min</span><h3>O que é uma devolutiva ao usuário?</h3><p>É a comunicação de retorno sobre uma solicitação. Pode informar uma solução, pedir dados, atualizar o andamento ou explicar o encaminhamento.</p><div class="note"><strong>Regra central:</strong> o usuário deve compreender o que foi confirmado e o que acontecerá depois.</div><details><summary>📌 Explore: devolutiva é o mesmo que encerrar?</summary><p>Não. Uma devolutiva pode ocorrer durante todo o ciclo do chamado, inclusive quando a solução ainda está em investigação.</p></details></article>
         <article class="theory-slide" data-theory-slide="2" hidden><span class="tag">SLIDE 3 DE 10 · 6 min</span><h3>Os cinco elementos de uma boa resposta</h3><div class="grid"><div class="card"><strong>1. Acolher</strong><p>Reconhecer a necessidade.</p></div><div class="card"><strong>2. Contextualizar</strong><p>Retomar o pedido.</p></div><div class="card"><strong>3. Informar</strong><p>Separar fatos e hipóteses.</p></div><div class="card"><strong>4. Orientar</strong><p>Dar passos claros.</p></div></div><div class="note"><strong>5. Acompanhar:</strong> indicar canal e próximo passo.</div><details><summary>🧩 Desafio: o que falta nesta resposta?</summary><p>“Verificamos o erro.” Falta informar o resultado da verificação e como a pessoa deve prosseguir.</p></details></article>
