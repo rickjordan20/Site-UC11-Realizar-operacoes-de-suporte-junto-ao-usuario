@@ -40,7 +40,18 @@ if (!configured) {
     login.addEventListener("click", async () => {
       login.disabled = true;
       try { await signInWithPopup(auth, provider); }
-      catch (error) { setStatus(error.code === "auth/popup-closed-by-user" ? "Entrada cancelada." : "Não foi possível entrar com Google."); }
+      catch (error) {
+        const code = typeof error?.code === "string" ? error.code : "auth/unknown";
+        console.error("Google sign-in failed:", code);
+        const messages = {
+          "auth/unauthorized-domain": "Este domínio não está autorizado no Firebase. Adicione uc11-classroom-auth.vercel.app em Authentication > Settings > Authorized domains.",
+          "auth/popup-blocked": "O navegador bloqueou a janela de login. Permita pop-ups para este site e tente novamente.",
+          "auth/popup-closed-by-user": "A janela de login foi fechada antes da conclusão. Tente novamente.",
+          "auth/operation-not-allowed": "O login com Google não está habilitado no Firebase. Procure o instrutor.",
+          "auth/network-request-failed": "Falha de conexão durante o login. Verifique sua internet e tente novamente."
+        };
+        setStatus(messages[code] || `Não foi possível entrar com Google (erro: ${code}). Tente novamente ou procure o instrutor.`);
+      }
       finally { login.disabled = false; }
     });
     logout.addEventListener("click", () => signOut(auth));

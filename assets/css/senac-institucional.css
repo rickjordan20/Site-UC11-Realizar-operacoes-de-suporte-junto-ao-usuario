@@ -2,3 +2,23 @@
 .senac-site-footer{padding:24px;text-align:center;color:#acb9cf;font-size:13px}
 .senac-site-footer a{color:#8bd8ff;text-decoration:underline}
 @media print{.senac-site-footer{color:#334}}
+.senac-profile[hidden],.senac-profile-panel[hidden]{display:none!important}
+.senac-profile{position:relative;flex:none}
+.senac-profile-trigger,.senac-profile-logout{border:1px solid #416586;border-radius:8px;background:#153653;color:#e8f4ff;font:inherit;font-weight:700;padding:9px 12px;cursor:pointer}
+.senac-profile-trigger:hover,.senac-profile-trigger:focus-visible,.senac-profile-logout:hover,.senac-profile-logout:focus-visible{background:#205174;outline:2px solid #75caff;outline-offset:2px}
+.senac-profile-panel{position:absolute;z-index:20;top:calc(100% + 10px);right:0;width:min(320px,calc(100vw - 24px));padding:16px;background:#10243a;border:1px solid #416586;border-radius:12px;box-shadow:0 12px 32px #0006;color:#e8f4ff;text-align:left}
+.senac-profile-details{display:flex;align-items:center;gap:12px;min-width:0;margin-bottom:14px}
+.senac-profile-avatar{display:grid;place-items:center;flex:none;width:44px;height:44px;overflow:hidden;border-radius:50%;background:#205174;color:#fff;font-size:18px;font-weight:700}
+.senac-profile-avatar img{width:100%;height:100%;object-fit:cover}
+.senac-profile-identity{display:grid;gap:4px;min-width:0}
+.senac-profile-name,.senac-profile-email{overflow-wrap:anywhere}
+.senac-profile-email{color:#b4cadf;font-size:13px}
+.senac-profile-status{margin:0 0 12px;color:#ffcf9c;font-size:13px}
+.senac-profile-logout{width:100%;background:#18314a;text-align:center}
+body.light .senac-profile-panel{background:#fff;border-color:#cbd8e6;color:#19324a}
+body.light .senac-profile-avatar{background:#dceeff;color:#163a57}
+body.light .senac-profile-email{color:#526078}
+body.light .senac-profile-trigger,body.light .senac-profile-logout{background:#e8f5ff;color:#163a57;border-color:#a9c5df}
+body.light .senac-profile-trigger:hover,body.light .senac-profile-trigger:focus-visible,body.light .senac-profile-logout:hover,body.light .senac-profile-logout:focus-visible{background:#d6edff}
+@media(max-width:650px){.senac-profile-panel{right:50%;transform:translateX(50%)}}
+@media print{.senac-profile{display:none!important}}
