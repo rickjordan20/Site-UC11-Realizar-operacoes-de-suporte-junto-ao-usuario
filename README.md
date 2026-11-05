@@ -1,68 +1,89 @@
 # UC11 — Central de Suporte ao Usuário
 
-Site educacional da turma **2025.07.186 — Técnico em Desenvolvimento de Sistemas (Senac-DF)**, para a unidade curricular **UC11 — Realizar operações de suporte junto ao usuário**.
+Portal educacional da turma **2025.07.186 — Técnico em Desenvolvimento de Sistemas (Senac-DF)**, para a unidade curricular **UC11 — Realizar operações de suporte junto ao usuário**.
 
-## Acesso
+## Acesso e publicação
 
-- **Site oficial:** https://uc11-classroom-auth.vercel.app/
+- **Endereço oficial:** https://uc11-classroom-auth.vercel.app/
 - **Repositório:** https://github.com/rickjordan20/Site-UC11-Realizar-operacoes-de-suporte-junto-ao-usuario
 - **Branch de publicação:** `master`
-- **GitHub Pages:** há um redirecionamento no `index.html` para o domínio oficial do Vercel. Utilizar o endereço oficial para divulgar as aulas.
+- **GitHub Pages:** as páginas redirecionam para o domínio oficial do Vercel para manter o acesso ao endpoint da API e aos recursos do site.
 
-## Organização didática
+O Vercel deve publicar a **raiz do repositório**: as páginas estáticas ficam na raiz, e `api/authorize.js` expõe a função em `/api/authorize`, reutilizando a implementação em `backend-vercel/api/authorize.js`.
 
-O site reúne calendário, indicadores, aulas presenciais, atividades assíncronas, autoavaliação e orientações para o uso do GLPI. As práticas usam os projetos **TechEduca** (guiadas pelo instrutor) e **Café Central** (autônomas).
+### Configuração de autorização
 
-As aulas presenciais têm duração prevista de quatro horas. O catálogo de aulas é montado em `script.js`, a partir da lista `aulas`. A liberação por data usa o fuso `America/Sao_Paulo`, às **14h**, sem exigir ação manual de publicação. O catálogo usa `lessonFiles` apenas para não apontar para arquivos inexistentes.
+1. Habilite Google Authentication no projeto Firebase identificado em `auth-config.js`.
+2. No Vercel, configure `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` e `GOOGLE_REFRESH_TOKEN` como variáveis privadas. A conta Google associada deve ter acesso à lista de estudantes do Classroom e autorizar o escopo `https://www.googleapis.com/auth/classroom.rosters.readonly`.
+3. O endpoint do frontend está definido em `auth-config.js` como `https://uc11-classroom-auth.vercel.app/api/authorize`. Se o domínio de produção mudar, atualize-o junto com a lista de origens.
+4. `APP_ORIGINS` aceita uma lista de origens separadas por vírgula. Sem configuração, o backend aceita o domínio oficial e o domínio atual do GitHub Pages. CORS limita chamadas de navegador, mas não substitui autenticação.
+5. `CLASSROOM_COURSE_ID` é opcional; por padrão, o backend usa o mesmo ID do Classroom declarado no frontend.
+6. Teste conta matriculada, conta não matriculada, token inválido e indisponibilidade das credenciais antes de divulgar a plataforma.
 
-## Aulas publicadas no catálogo
+O guard no navegador melhora o fluxo normal de navegação, mas os arquivos HTML publicados são estáticos e podem ser acessados diretamente por URL. **Não trate as páginas como conteúdo privado.** Para confidencialidade real, hospede o conteúdo atrás de autorização por requisição.
+
+## Conteúdo atual
+
+O portal reúne calendário, indicadores, aulas, atividades assíncronas, autoavaliação e orientações para o GLPI. As práticas usam os projetos **TechEduca** (guiadas pelo instrutor) e **Café Central** (autônomas). As atividades armazenam progresso no navegador e permitem exportação local; a exportação não envia respostas ao instrutor nem ao Classroom.
+
+### Aulas presenciais existentes
 
 | Aula | Data | Tema | Indicador | Página |
-| --- | --- | --- | --- | --- |
+|---|---|---|---|---|
 | 1 | 21/10/2026 | Introdução ao Suporte Técnico e à Central de Serviços | I1 | `aula-1.html` |
 | 2 | 22/10/2026 | Identificação das Necessidades e Perfis dos Usuários | I1 | `aula-2.html` |
 | 3 | 26/10/2026 | Tipos de Chamados | I1 | `aula-3.html` |
 | 4 | 27/10/2026 | Registro, Categorização e Diagnóstico Inicial | I1 | `aula-4.html` |
-| **5** | **29/10/2026** | **Comunicação Profissional e Atendimento Humanizado** | **I2** | **`aula-5.html`** |
+| 5 | 29/10/2026 | Comunicação Profissional e Atendimento Humanizado | I2 | `aula-5.html` |
+| 6 | 03/11/2026 | Canais de Atendimento | I1 · I2 | `aula-6.html` |
 
-A Aula 6 também está disponível no repositório. As aulas 7 a 17 ainda não possuem páginas HTML, portanto o catálogo não cria links quebrados; quando esses arquivos forem criados e adicionados a `lessonFiles`, a liberação dependerá apenas da data e do horário programados.
+As aulas 7–17 estão planejadas, mas ainda não têm páginas. As atividades assíncronas 1 e 2 existem; 3 e 4 estão planejadas.
 
-### Aula 5 — Comunicação Profissional e Atendimento Humanizado
+### Liberação de conteúdo
 
-- **Carga horária:** 4 horas; **indicador:** I2.
-- **Teoria contextualizada (45 min):** dez slides interativos sobre comunicação profissional, clareza, empatia, escuta ativa e adequação da linguagem.
-- **Prática guiada — TechEduca (75 min):** análise e reescrita de mensagens de atendimento.
-- **Prática autônoma — Café Central (90 min):** simulações de atendimento e elaboração de respostas profissionais.
-- **Fechamento (30 min):** síntese e reflexão sobre o atendimento humanizado.
-- **Identificação:** o estudante informa seu nome antes das atividades.
-- **Avaliação:** a página orienta que as atividades práticas sejam avaliadas pelo instrutor, sem atribuição automática de nota ou menção.
-- **GLPI:** utilização opcional, conforme confirmação de disponibilidade pelo instrutor.
+O catálogo em `script.js` contém cronograma e horários de liberação no fuso `America/Sao_Paulo`, às **14h**. `lessonFiles` e `remoteFiles` relacionam aulas e atividades existentes aos seus caminhos. A liberação por data é apenas uma regra de interface, não um controle de segurança.
 
-**Publicação corrigida:** o arquivo `aula-5.html` já existia, mas o catálogo em `script.js` limitava `ready` às aulas de índice 0 a 3. A alteração do commit `b5deea6529f4690a722f5fa8df413ec5e281a0d0` ampliou a liberação para o índice 4 e adicionou `aula-5.html` à lista de destinos. Assim, após a data de liberação, o cartão da Aula 5 passa a exibir o link de acesso em vez da mensagem de conteúdo em preparação.
+## Estrutura
 
-## Principais arquivos
+```text
+/
+├── api/                         # Rota Vercel /api/authorize
+├── assets/
+│   ├── css/senac-institucional.css
+│   └── js/storage-service.js
+├── activities/                  # Orientações para futuras atividades
+├── lessons/                     # Orientações para futuras aulas
+├── backend-vercel/api/          # Implementação da autorização
+├── scripts/check-links.mjs      # Verificador de links e fragmentos locais
+├── .github/workflows/validate.yml
+├── index.html                   # Catálogo e página inicial
+├── script.js                    # Calendário, aulas e atividades
+├── style.css                    # Estilos compartilhados da plataforma
+└── *.html                       # Páginas publicadas (URLs preservadas)
+```
 
-| Arquivo | Finalidade |
-| --- | --- |
-| `index.html` | Página inicial, calendário, catálogo e orientações |
-| `script.js` | Dados do cronograma, renderização dos cartões e lógica de liberação |
-| `style.css` | Estilos compartilhados |
-| `aula-1.html` a `aula-5.html` | Conteúdo das aulas publicadas |
-| `access-guard.js` | Script de controle de acesso carregado na página inicial |
-| `glpi-manual-floating.js` | Acesso ao manual flutuante do GLPI |
-| `senac-institucional.js` | Identidade visual institucional |
+As páginas atuais permanecem na raiz para preservar links já divulgados. Para cadastrar novas páginas, siga [`lessons/README.md`](./lessons/README.md) e [`activities/README.md`](./activities/README.md).
 
-## Procedimento para publicar uma próxima aula
+## Desenvolvimento e validação
 
-1. Criar e revisar a página `aula-N.html` com conteúdo e atividades completos.
-2. Conferir o registro da aula e sua data no array `aulas` de `script.js`.
-3. Registrar o número da página existente em `lessonFiles` (ou `remoteFiles`, para assíncronas). Não existe botão nem aprovação manual de publicação: a liberação ocorre automaticamente às 14h da data prevista. Arquivos ainda inexistentes não podem ser disponibilizados.
-4. Testar navegação, identificação, interações, responsividade e geração de evidências.
-5. Publicar na branch `master`, acompanhar a implantação do Vercel e verificar o endereço oficial.
-6. Atualizar esta documentação.
+Requer Node.js 22.22 ou superior:
 
-> **Atenção:** o bloqueio de data em JavaScript é visual e não substitui controle de autorização no servidor. A implantação em produção deve ser verificada separadamente do commit no GitHub.
+```sh
+npm ci
+npm run validate:html
+npm run lint
+npm run check:links
+```
 
-## Histórico
+O workflow `Validate site` executa essas três verificações em cada push e pull request. `npm run test:ci` executa localmente a mesma sequência.
 
-- **31/10/2026 — Documentação inicial:** registro do funcionamento do site, das cinco aulas publicadas e da correção de acesso à Aula 5.
+## Privacidade e dados locais
+
+`assets/js/storage-service.js` centraliza acesso ao `localStorage`. A indisponibilidade do armazenamento é informada na própria página; a plataforma não envia respostas didáticas automaticamente ao professor. Consulte [`politica-de-privacidade.html`](./politica-de-privacidade.html).
+
+## Arquivos de referência
+
+- [`ARQUITETURA.md`](./ARQUITETURA.md) — estrutura atual, compatibilidade e expansão segura para futuras aulas.
+- [`AUDITORIA-TECNICA.md`](./AUDITORIA-TECNICA.md) — diagnóstico técnico anterior às melhorias desta implementação.
+- [`LOGIN-SETUP.md`](./LOGIN-SETUP.md) — histórico e configuração do login.
+- [`backend-vercel/README.md`](./backend-vercel/README.md) — implantação e segurança do serviço de autorização.
