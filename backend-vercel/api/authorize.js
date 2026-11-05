@@ -78,9 +78,10 @@ export default async function handler(req, res) {
     const email = payload.email_verified === true && typeof payload.email === "string"
       ? payload.email.trim().toLowerCase()
       : "";
-    const authorized = await isCourseMemberByIdOrEmail(googleId, email, accessToken, "students")
-      || await isCourseMemberByIdOrEmail(googleId, email, accessToken, "teachers");
-    return reply(res, 200, { authorized });
+    let role = null;
+    if (await isCourseMemberByIdOrEmail(googleId, email, accessToken, "teachers")) role = "teacher";
+    else if (await isCourseMemberByIdOrEmail(googleId, email, accessToken, "students")) role = "student";
+    return reply(res, 200, role ? { authorized: true, role } : { authorized: false });
   } catch (err) {
     // Fail closed; never reveal provider credentials or roster details.
     console.error("Authorization failed:", err.message);

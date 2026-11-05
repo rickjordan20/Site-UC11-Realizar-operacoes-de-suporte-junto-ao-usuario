@@ -117,7 +117,10 @@
     name.className = "senac-profile-name";
     const email = document.createElement("span");
     email.className = "senac-profile-email";
-    identity.append(name, email);
+    const role = document.createElement("span");
+    role.className = "senac-profile-role";
+    role.hidden = true;
+    identity.append(name, email, role);
     details.append(avatar, identity);
 
     const status = document.createElement("p");
@@ -152,12 +155,12 @@
       }
     });
 
-    return { root, avatar, name, email, status, trigger, panel, logout };
+    return { root, avatar, name, email, role, status, trigger, panel, logout };
   }
 
   async function connectProfile(profile, prefix) {
     try {
-      const [{ firebaseConfig }, { getApps, initializeApp }, { getAuth, onAuthStateChanged, signOut }] = await Promise.all([
+      const [{ firebaseConfig, authorizationEndpoint, classroomCourseId }, { getApps, initializeApp }, { getAuth, onAuthStateChanged, signOut }] = await Promise.all([
         import("./auth-config.js"),
         import("https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"),
         import("https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js")
@@ -165,9 +168,41 @@
       const app = getApps()[0] || initializeApp(firebaseConfig);
       const auth = getAuth(app);
 
+      const roleLabels = { student: "Aluno", teacher: "Professor" };
+      const showRole = async user => {
+        const cacheKey = "uc11-role:" + user.uid;
+        let role = null;
+        try { role = sessionStorage.getItem(cacheKey); } catch { /* storage unavailable */ }
+        if (!roleLabels[role]) {
+          try {
+            const response = await fetch(authorizationEndpoint, {
+              method: "POST",
+              headers: {
+                Authorization: "Bearer " + await user.getIdToken(),
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ requestedClass: classroomCourseId }),
+              cache: "no-store"
+            });
+            role = response.ok ? (await response.json()).role : null;
+            if (roleLabels[role]) {
+              try { sessionStorage.setItem(cacheKey, role); } catch { /* storage unavailable */ }
+            }
+          } catch {
+            role = null;
+          }
+        }
+        profile.role.textContent = roleLabels[role] || "";
+        profile.role.hidden = !roleLabels[role];
+      };
+
       onAuthStateChanged(auth, user => {
         profile.root.hidden = !user;
-        if (!user) return;
+        if (!user) {
+          profile.role.hidden = true;
+          return;
+        }
+        showRole(user);
 
         const displayName = user.displayName || "Conta Google";
         profile.name.textContent = displayName;
