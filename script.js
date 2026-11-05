@@ -9,7 +9,7 @@ function releaseAt(day){const [d,m]=day.split('/');return '2026'+m+d+'1400'}
 function dateLabel(day){return day+'/2026 às 14h (Brasília)'}
 // O horário é a única condição de liberação para aulas com arquivo publicado.
 // A lista representa os arquivos efetivamente existentes no repositório.
-const lessonFiles=new Set([1,2,3,4,5,6]);
+const lessonFiles={1:"aula-1.html",2:"aula-2.html",3:"aula-3.html",4:"aula-4.html",5:"aula-5.html",6:"aula-6.html",7:"lessons/aula-07.html"};
 function renderLessons(){
  const now=brasilNow();
  const term=(document.querySelector('#lesson-search')?.value||'').trim().toLocaleLowerCase('pt-BR');
@@ -17,21 +17,22 @@ function renderLessons(){
  document.querySelector('#lesson-count').textContent=matching.length+' de '+aulas.length+' aulas';
  document.querySelector('#lessons').innerHTML=matching.length?matching.map(({a,i})=>{
   const released=now>=releaseAt(a[0]);
-  const exists=lessonFiles.has(i+1);
+  const lessonPath=lessonFiles[i+1];
+  const exists=Boolean(lessonPath);
   const common='<div class="lesson-card-top"><span class="lesson-number">Aula '+String(i+1).padStart(2,'0')+'</span><time class="lesson-date" datetime="2026-'+a[0].slice(3,5)+'-'+a[0].slice(0,2)+'">'+a[0]+'/2026</time></div><h3>'+a[1]+'</h3><p class="lesson-indicator">'+a[2]+'</p>';
-  if(released&&exists)return '<a class="lesson-card lesson-link released" href="aula-'+(i+1)+'.html" aria-label="Abrir aula '+(i+1)+': '+a[1]+'">'+common+'<div class="lesson-card-bottom"><span class="lesson-status"><span class="status-dot" aria-hidden="true"></span>Disponível</span><span class="lesson-cta">Acessar aula <span aria-hidden="true">↗</span></span></div></a>';
+  if(released&&exists)return '<a class="lesson-card lesson-link released" href="'+lessonPath+'" aria-label="Abrir aula '+(i+1)+': '+a[1]+'">'+common+'<div class="lesson-card-bottom"><span class="lesson-status"><span class="status-dot" aria-hidden="true"></span>Disponível</span><span class="lesson-cta">Acessar aula <span aria-hidden="true">↗</span></span></div></a>';
   if(!released)return '<article class="lesson-card locked" aria-disabled="true">'+common+'<div class="lesson-card-bottom"><span class="lesson-status">Agendada · 14h</span><span class="lesson-pending">Disponível em '+a[0]+'</span></div></article>';
   return '<article class="lesson-card pending" aria-disabled="true">'+common+'<div class="lesson-card-bottom"><span class="lesson-status">Data alcançada</span><span class="lesson-pending">Material em preparação</span></div></article>';
  }).join(''):'<p class="empty-state">Nenhuma aula encontrada. Tente outra busca.</p>';
 }
 renderLessons();setInterval(renderLessons,60000);document.querySelector("#lesson-search").addEventListener("input",renderLessons);
 const remoteDetails=[['Revise os conceitos, classifique quatro situações e registre dois casos da TechEduca e quatro do Café Central.','Atividade individual com identificação, backup JSON e relatório em PDF.'],['Analise três solicitações e escreva respostas claras, respeitosas e úteis.','Três devolutivas profissionais ao usuário.'],['Avalie quatro demandas, organize a prioridade e indique a equipe ou fluxo adequado.','Ficha de triagem e encaminhamento de quatro chamados.'],['Escolha uma funcionalidade do sistema fictício e explique como utilizá-la em linguagem acessível.','Guia de uso com no mínimo cinco etapas.']];
-const remoteFiles=new Set([1,2]);
+const remoteFiles={1:"aula-assincrona-1.html",2:"aula-assincrona-2.html"};
 function renderRemoteActivities(){
  const now=brasilNow();
  document.querySelector('#remote').innerHTML=remotas.map((a,i)=>{
-  const released=now>=releaseAt(a[0]),exists=remoteFiles.has(i+1);
-  const availability=!released?'<p class="hint">🔒 Atividade bloqueada. Disponível automaticamente a partir de '+dateLabel(a[0])+'.</p>':exists?'<p><a class="outline-action" href="aula-assincrona-'+(i+1)+'.html">Acessar Aula Assíncrona '+(i+1)+' →</a></p><p class="hint">Gere o PDF e anexe na atividade correspondente do Google Classroom.</p>':'<p class="hint">Data de liberação atingida, mas o material desta atividade ainda não existe no site.</p>';
+  const released=now>=releaseAt(a[0]),remotePath=remoteFiles[i+1],exists=Boolean(remotePath);
+  const availability=!released?'<p class="hint">🔒 Atividade bloqueada. Disponível automaticamente a partir de '+dateLabel(a[0])+'.</p>':exists?'<p><a class="outline-action" href="'+remotePath+'">Acessar Aula Assíncrona '+(i+1)+' →</a></p><p class="hint">Gere o PDF e anexe na atividade correspondente do Google Classroom.</p>':'<p class="hint">Data de liberação atingida, mas o material desta atividade ainda não existe no site.</p>';
   return '<details class="remote-item"><summary><time>'+a[0]+'/2026</time><strong>'+a[1]+'</strong><small>'+a[2]+' · 4h · '+(released?'Data liberada':'Bloqueada até 14h')+'</small><span aria-hidden="true">⌄</span></summary><div class="remote-detail">'+(released?'<p><strong>Desafio:</strong> '+remoteDetails[i][0]+'</p><p><strong>Evidência:</strong> '+remoteDetails[i][1]+'</p>':'<p>O conteúdo e as orientações serão exibidos após a liberação.</p>')+availability+'</div></details>';
  }).join('');
 }renderRemoteActivities();setInterval(renderRemoteActivities,60000);
