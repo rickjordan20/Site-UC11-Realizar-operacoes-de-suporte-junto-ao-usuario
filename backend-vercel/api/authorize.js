@@ -37,30 +37,19 @@ async function classroomToken() {
   return json.access_token;
 }
 
-async function isCourseMember(googleUserId, accessToken, memberType) {
-  let pageToken = "";
-  let pages = 0;
-  do {
-    const url = new URL("https://classroom.googleapis.com/v1/courses/" + COURSE_ID + "/" + memberType);
-    url.searchParams.set("pageSize", "100");
-    if (pageToken) url.searchParams.set("pageToken", pageToken);
-    const response = await fetch(url, { headers: { Authorization: "Bearer " + accessToken } });
-    if (!response.ok) throw new Error("classroom_roster_failed");
-    const data = await response.json();
-    if ((data[memberType] || []).some(member => member.userId === googleUserId || member.profile?.id === googleUserId)) return true;
-    pageToken = data.nextPageToken || "";
-    pages++;
-  } while (pageToken && pages < 100);
-  if (pageToken) throw new Error("classroom_roster_incomplete");
-  return false;
+async function isCourseMember(identifier, accessToken, memberType) {
+  const url = new URL(
+    "https://classroom.googleapis.com/v1/courses/" + COURSE_ID + "/" + memberType + "/" + encodeURIComponent(identifier)
+  );
+  const response = await fetch(url, { headers: { Authorization: "Bearer " + accessToken } });
+  if (response.ok) return true;
+  if (response.status === 404) return false;
+  throw new Error("classroom_roster_failed");
 }
 
-async function isStudent(googleUserId, accessToken) {
-  return isCourseMember(googleUserId, accessToken, "students");
-}
-
-async function isTeacher(googleUserId, accessToken) {
-  return isCourseMember(googleUserId, accessToken, "teachers");
+async function isCourseMemberByIdOrEmail(googleUserId, email, accessToken, memberType) {
+  if (await isCourseMember(googleUserId, accessToken, memberType)) return true;
+  return email ? isCourseMember(email, accessToken, memberType) : false;
 }
 
 export default async function handler(req, res) {
@@ -86,8 +75,11 @@ export default async function handler(req, res) {
     if (!googleId || payload.firebase?.sign_in_provider !== "google.com")
       return reply(res, 403, { authorized: false });
     const accessToken = await classroomToken();
-    const authorized = await isStudent(googleId, accessToken)
-      || await isTeacher(googleId, accessToken);
+    const email = payload.email_verified === true && typeof payload.email === "string"
+      ? payload.email.trim().toLowerCase()
+      : "";
+    const authorized = await isCourseMemberByIdOrEmail(googleId, email, accessToken, "students")
+      || await isCourseMemberByIdOrEmail(googleId, email, accessToken, "teachers");
     return reply(res, 200, { authorized });
   } catch (err) {
     // Fail closed; never reveal provider credentials or roster details.
