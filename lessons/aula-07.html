@@ -96,6 +96,16 @@
     .a7 .theory-slide h3{font-size:clamp(24px,3vw,34px)}
     .a7 .slide-controls{margin:16px 0;gap:12px}
     .a7 .slide-controls button{min-height:44px}
+    .a7 .theory-slide .grid>.card{margin:8px 0}
+    .a7 .slide-good{border-left:4px solid #65d3a4}
+    .a7 .slide-bad{border-left:4px solid #f5a2a2}
+    .a7 .theory-slide details{background:#173a59;border:1px solid #426b8c;border-radius:10px;padding:14px;margin:16px 0}
+    .a7 .theory-slide summary{cursor:pointer;font-weight:750;color:#e7f6ff}
+    .a7 .slide-quiz{display:grid;gap:10px;margin:14px 0}
+    .a7 .slide-quiz button{text-align:left;white-space:normal;min-height:55px;background:#17334f}
+    .a7 .slide-quiz button.selected{background:#19476a;border-color:#55c4ff}
+    .a7 .slide-feedback{min-height:24px;color:#ffdda2;font-weight:650}
+    .a7 .slide-feedback.correct{color:#a9e6c8}
     .a7 .guided-help{background:#173a59;border:1px solid #426b8c;border-radius:10px;padding:14px;margin:12px 0}
     .a7 .guided-help summary{color:#e7f6ff}
     .a7 .checklist label{background:#17334f;border-color:#41698a}
@@ -173,15 +183,21 @@
         <article class="card"><h3>Continuidade e registro</h3><p>Informe quem acompanhará, qual será o próximo passo e como o usuário receberá novidades. Registre a comunicação no chamado conforme o processo da equipe.</p></article>
       </div>
 
-      <h3>Apresentação interativa — aprenda por situações</h3>
-      <p class="muted">Avance pelos quatro exemplos. Ao final, confira os conceitos nas três questões.</p>
+      <h3>Apresentação interativa — devolutivas profissionais</h3>
+      <p class="muted">Dez slides contextualizados, com comparações, cartões, perguntas e feedback imediato, seguindo o formato da Aula 5. Navegue e explore as interações antes de avançar.</p>
       <section id="a7-slide-deck" aria-label="Slides de comunicação profissional">
-        <article class="theory-slide" data-theory-slide="0"><p class="tag">SLIDE 1 · ACOLHER</p><h3>O usuário não consegue entrar no sistema</h3><p>Em vez de “Você digitou errado”, comece por “Entendi que você não consegue acessar. Qual mensagem aparece?”</p><div class="note"><strong>Observe:</strong> reconhecer a dificuldade não significa confirmar sua causa.</div></article>
-        <article class="theory-slide" data-theory-slide="1" hidden><p class="tag">SLIDE 2 · INFORMAR</p><h3>O incidente ainda está em análise</h3><p>Informe o que foi confirmado, o que está sendo investigado e como a pessoa poderá acompanhar o chamado.</p><div class="note"><strong>Evite:</strong> “Em dez minutos estará resolvido” quando não existe previsão confirmada.</div></article>
-        <article class="theory-slide" data-theory-slide="2" hidden><p class="tag">SLIDE 3 · ORIENTAR</p><h3>O acesso foi restabelecido</h3><p>“Atualizamos a permissão. Saia da conta, entre novamente e confirme se o ambiente abriu normalmente.”</p><div class="note"><strong>Observe:</strong> ação confirmada, instrução verificável e pedido de retorno.</div></article>
-        <article class="theory-slide" data-theory-slide="3" hidden><p class="tag">SLIDE 4 · ENCERRAR</p><h3>O usuário confirmou que funcionou</h3><p>Agradeça a confirmação, registre o resultado e informe o canal para novo contato caso o problema volte.</p><div class="note"><strong>Importante:</strong> não encerre como resolvido um problema que continua sem confirmação de solução.</div></article>
+        <article class="theory-slide" data-theory-slide="0"><span class="tag">SLIDE 1 DE 10 · 4 min</span><h3>Você já recebeu uma resposta que não ajudou?</h3><p>Uma estudante não consegue abrir a atividade e recebe duas mensagens:</p><div class="grid"><div class="card slide-bad"><strong>✕ Resposta A</strong><p>“Aqui funciona. Tenta de novo.”</p></div><div class="card slide-good"><strong>✓ Resposta B</strong><p>“Entendi que a atividade não abre. Qual mensagem aparece na tela? Vamos verificar seu acesso.”</p></div></div><details><summary>💬 Qual resposta permite continuar o atendimento?</summary><p>A B: acolhe, solicita uma evidência pertinente e informa o próximo passo, sem presumir a causa.</p></details></article>
+        <article class="theory-slide" data-theory-slide="1" hidden><span class="tag">SLIDE 2 DE 10 · 4 min</span><h3>O que é uma devolutiva ao usuário?</h3><p>É a comunicação de retorno sobre uma solicitação. Pode informar uma solução, pedir dados, atualizar o andamento ou explicar o encaminhamento.</p><div class="note"><strong>Regra central:</strong> o usuário deve compreender o que foi confirmado e o que acontecerá depois.</div><details><summary>📌 Explore: devolutiva é o mesmo que encerrar?</summary><p>Não. Uma devolutiva pode ocorrer durante todo o ciclo do chamado, inclusive quando a solução ainda está em investigação.</p></details></article>
+        <article class="theory-slide" data-theory-slide="2" hidden><span class="tag">SLIDE 3 DE 10 · 6 min</span><h3>Os cinco elementos de uma boa resposta</h3><div class="grid"><div class="card"><strong>1. Acolher</strong><p>Reconhecer a necessidade.</p></div><div class="card"><strong>2. Contextualizar</strong><p>Retomar o pedido.</p></div><div class="card"><strong>3. Informar</strong><p>Separar fatos e hipóteses.</p></div><div class="card"><strong>4. Orientar</strong><p>Dar passos claros.</p></div></div><div class="note"><strong>5. Acompanhar:</strong> indicar canal e próximo passo.</div><details><summary>🧩 Desafio: o que falta nesta resposta?</summary><p>“Verificamos o erro.” Falta informar o resultado da verificação e como a pessoa deve prosseguir.</p></details></article>
+        <article class="theory-slide" data-theory-slide="3" hidden><span class="tag">SLIDE 4 DE 10 · 5 min</span><h3>Fato confirmado ou hipótese?</h3><p>O sistema está lento, mas a causa ainda não foi identificada. Qual mensagem é segura?</p><div class="slide-quiz" data-correct="b"><button type="button" data-choice="a">A. “O servidor caiu e volta em 10 minutos.”</button><button type="button" data-choice="b">B. “Registramos a lentidão e a equipe está analisando. Ainda não há previsão confirmada.”</button><button type="button" data-choice="c">C. “Não é problema do suporte.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha uma alternativa para conferir.</p></div></article>
+        <article class="theory-slide" data-theory-slide="4" hidden><span class="tag">SLIDE 5 DE 10 · 4 min</span><h3>Orientações simples e verificáveis</h3><div class="grid"><div class="card slide-bad"><strong>✕ Confusa</strong><p>“Limpe o cache e valide as credenciais.”</p></div><div class="card slide-good"><strong>✓ Clara</strong><p>“Feche a página, abra o navegador novamente e tente entrar. Se aparecer uma mensagem, informe qual é.”</p></div></div><details><summary>🔍 Por que a segunda é melhor?</summary><p>Divide a ação em passos e explica como relatar o resultado, sem depender de termos técnicos.</p></details></article>
+        <article class="theory-slide" data-theory-slide="5" hidden><span class="tag">SLIDE 6 DE 10 · 4 min</span><h3>Como pedir informações sem expor dados</h3><p>Um pedido não aparece no sistema do Café Central. Você precisa identificar a solicitação sem coletar dados desnecessários.</p><div class="slide-quiz" data-correct="a"><button type="button" data-choice="a">A. Solicitar número do pedido e horário aproximado.</button><button type="button" data-choice="b">B. Solicitar senha e código de autenticação.</button><button type="button" data-choice="c">C. Solicitar todos os dados pessoais do cliente.</button><p class="slide-feedback" role="status" aria-live="polite">Escolha uma alternativa para conferir.</p></div></article>
+        <article class="theory-slide" data-theory-slide="6" hidden><span class="tag">SLIDE 7 DE 10 · 5 min</span><h3>Acompanhamento e escalonamento</h3><p>O suporte inicial não resolveu uma divergência no relatório de vendas. A equipe responsável precisará investigar.</p><div class="card slide-good"><strong>Modelo profissional</strong><p>“Conferimos o período e a unidade informados. Como a divergência permanece, encaminhamos o chamado à equipe responsável pela análise. As atualizações serão registradas neste atendimento.”</p></div><details><summary>💬 O que o técnico não deve prometer?</summary><p>Um prazo de correção sem confirmação e um resultado que depende de outra equipe.</p></details></article>
+        <article class="theory-slide" data-theory-slide="7" hidden><span class="tag">SLIDE 8 DE 10 · 4 min</span><h3>Comunicar a solução aplicada</h3><p>Uma impressora voltou a funcionar após a retomada da fila de impressão. Um teste fictício foi concluído com sucesso.</p><div class="card slide-good"><strong>Devolutiva</strong><p>“Identificamos que a fila estava pausada, retomamos o serviço e realizamos um teste de impressão com sucesso. Você pode confirmar se os comprovantes estão saindo normalmente?”</p></div><details><summary>🧩 Quais evidências tornam a resposta confiável?</summary><p>Ação realizada, teste efetuado e pedido de confirmação do usuário.</p></details></article>
+        <article class="theory-slide" data-theory-slide="8" hidden><span class="tag">SLIDE 9 DE 10 · 4 min</span><h3>Encerramento não é abandono</h3><p>O usuário confirmou que o relatório atualizado apresenta os valores esperados.</p><div class="grid"><div class="card slide-bad"><strong>✕ Inadequado</strong><p>“Fechado.”</p></div><div class="card slide-good"><strong>✓ Profissional</strong><p>“Obrigado pela confirmação. Registramos que os valores foram normalizados e concluímos este atendimento. Caso surja outra divergência, abra um novo chamado.”</p></div></div><details><summary>💬 Quando não encerrar?</summary><p>Quando a solução não foi confirmada ou ainda existem pendências relevantes.</p></details></article>
+        <article class="theory-slide" data-theory-slide="9" hidden><span class="tag">SLIDE 10 DE 10 · 5 min</span><h3>Missão de revisão: escolha a melhor devolutiva</h3><p>Uma professora relata erro ao enviar arquivos. A equipe ainda está investigando.</p><div class="slide-quiz" data-correct="c"><button type="button" data-choice="a">A. “Já resolvemos. Tente amanhã.”</button><button type="button" data-choice="b">B. “Isso é culpa do seu computador.”</button><button type="button" data-choice="c">C. “Registramos o erro no envio e seguimos analisando. Se possível, informe a mensagem exibida. Atualizaremos o chamado quando houver novidade.”</button><p class="slide-feedback" role="status" aria-live="polite">Escolha uma alternativa para conferir.</p></div><div class="note"><strong>Próxima etapa:</strong> aplicar esses princípios nos chamados da TechEduca.</div></article>
       </section>
-      <div class="slide-controls no-print"><button type="button" id="a7-slide-prev" disabled>← Anterior</button><span id="a7-slide-counter" role="status" aria-live="polite">1 de 4</span><button type="button" id="a7-slide-next">Próximo →</button></div>
+      <div class="slide-controls no-print"><button type="button" id="a7-slide-prev" disabled>← Slide anterior</button><span id="a7-slide-counter" role="status" aria-live="polite">Slide 1 de 10</span><button type="button" id="a7-slide-next">Próximo slide →</button></div>
       <h3>Estrutura de uma devolutiva profissional</h3>
       <div class="grid">
         <article class="card structure"><h3>1. Identificação da solicitação</h3><p>Saudação adequada e breve confirmação do que a pessoa pediu. Isso demonstra escuta e permite corrigir um possível entendimento equivocado.</p></article>
@@ -495,12 +511,28 @@
       function showSlide(index) {
         slideIndex = Math.max(0, Math.min(slides.length - 1, index));
         slides.forEach((slide, i) => { slide.hidden = i !== slideIndex; });
-        document.getElementById("a7-slide-counter").textContent = (slideIndex + 1) + " de " + slides.length;
+        document.getElementById("a7-slide-counter").textContent = "Slide " + (slideIndex + 1) + " de " + slides.length;
         document.getElementById("a7-slide-prev").disabled = slideIndex === 0;
         document.getElementById("a7-slide-next").disabled = slideIndex === slides.length - 1;
       }
       document.getElementById("a7-slide-prev").addEventListener("click", () => showSlide(slideIndex - 1));
       document.getElementById("a7-slide-next").addEventListener("click", () => showSlide(slideIndex + 1));
+
+      document.querySelectorAll(".slide-quiz").forEach(quiz => {
+        quiz.querySelectorAll("button[data-choice]").forEach(button => {
+          button.addEventListener("click", () => {
+            const correct = button.dataset.choice === quiz.dataset.correct;
+            quiz.querySelectorAll("button[data-choice]").forEach(option => {
+              option.classList.toggle("selected", option === button);
+              option.setAttribute("aria-pressed", String(option === button));
+            });
+            quiz.querySelector(".slide-feedback").textContent = correct
+              ? "✓ Correto! A resposta apresenta informações verificáveis e orienta com responsabilidade."
+              : "Revise: evite suposições, dados sensíveis e promessas sem confirmação. Tente outra alternativa.";
+            quiz.querySelector(".slide-feedback").classList.toggle("correct", correct);
+          });
+        });
+      });
 
       function renderReport() {
         const report = document.getElementById("a7-report");
