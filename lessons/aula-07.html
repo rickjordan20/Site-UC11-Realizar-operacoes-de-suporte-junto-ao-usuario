@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <script>
+    if (location.hostname.toLowerCase().endsWith(".github.io")) {
+      location.replace("https://uc11-classroom-auth.vercel.app" + location.pathname.replace(/^\/[^/]+(?=\/|$)/, "") + location.search + location.hash);
+    }
+  </script>
+  <meta charset="utf-8">
+  <script src="../assets/js/storage-service.js?v=1"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aula 7 da UC11 sobre elaboração de respostas e devolutivas profissionais ao usuário.">
+  <title>Aula 7 · Respostas e Devolutivas · UC11</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../lesson-colors.css?v=1">
+  <link rel="stylesheet" href="../assets/css/senac-institucional.css?v=1">
+  <script defer src="../lesson-duration.js?v=1"></script>
+  <script type="module" src="../access-guard.js?v=2"></script>
+  <style>
+    .a7{max-width:1080px;margin:auto;padding:28px 18px 70px;color:#e8f3ff;font:16px/1.65 system-ui,Arial,sans-serif}
+    .a7 *{box-sizing:border-box}
+    .a7 h1,.a7 h2,.a7 h3{color:#fff;line-height:1.25}
+    .a7 h1{font-size:clamp(28px,4vw,42px)}
+    .a7 a{color:var(--uc11-accent-cyan,#8bd8ff)}
+    .a7 .panel{background:#10243d;border:1px solid #315273;border-radius:16px;padding:24px;margin:18px 0}
+    .a7 .hero{background:linear-gradient(120deg,#102941,#1a476b)}
+    .a7 .tag{color:var(--uc11-accent-cyan,#87d1ff);font-size:13px;font-weight:800;letter-spacing:.06em}
+    .a7 .muted{color:#bfd4e7}
+    .a7 .card{background:#173550;border:1px solid #456b8a;border-radius:12px;padding:17px;margin:12px 0}
+    .a7 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .a7 .structure{border-left:4px solid var(--uc11-accent-cyan,#65caff)}
+    .a7 .structure:nth-child(2){border-left-color:var(--uc11-accent-orange,#ffb36b)}
+    .a7 .structure:nth-child(3){border-left-color:var(--uc11-accent-mint,#8de0c0)}
+    .a7 .structure:nth-child(4){border-left-color:var(--uc11-accent-violet,#c4b5fd)}
+    .a7 .structure:nth-child(5){border-left-color:var(--uc11-accent-cyan,#65caff)}
+    .a7 .note{border-left:4px solid var(--uc11-accent-cyan,#62c0f7);padding:13px;background:#183d5b;border-radius:8px}
+    .a7 .example{border-left:4px solid var(--uc11-accent-mint,#8de0c0)}
+    .a7 .example.bad{border-left-color:var(--uc11-accent-orange,#ffb36b)}
+    .a7 label{display:block;margin:10px 0;font-weight:650}
+    .a7 input,.a7 textarea,.a7 select{display:block;width:100%;margin-top:7px;background:#0b1e32;color:#fff;border:1px solid #7596af;border-radius:8px;padding:12px;font:inherit}
+    .a7 textarea{min-height:145px;resize:vertical}
+    .a7 select{min-height:48px}
+    .a7 input:focus-visible,.a7 textarea:focus-visible,.a7 select:focus-visible,.a7 button:focus-visible,.a7 a:focus-visible{outline:3px solid #ffd77a;outline-offset:3px}
+    .a7 button{background:#1e527a;border:1px solid #629bc4;color:#fff;padding:11px 15px;border-radius:9px;cursor:pointer;font:inherit}
+    .a7 button:hover:not(:disabled){background:#2a6b9d}
+    .a7 button:disabled{opacity:.5;cursor:not-allowed}
+    .a7 .primary{background:#147ac4}
+    .a7 .stage-nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+    .a7 .stage-nav button{font-size:14px;padding:10px 13px}
+    .a7 .stage-nav button[aria-current="step"]{background:#147ac4;border-color:#8dd5ff}
+    .a7 .stage-nav button:disabled{opacity:.5}
+    .a7 .stage-panel[hidden]{display:none}
+    .a7 .actions{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .a7 .status{min-height:1.5em;color:#a9e6c8}
+    .a7 .warning{min-height:1.5em;color:#ffdda2;font-weight:650}
+    .a7 .case h3{margin-top:0}
+    .a7 .checklist label{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid #456b8a;border-radius:9px;background:#173550}
+    .a7 .checklist input{flex:0 0 20px;width:20px;height:20px;margin:3px 0 0;accent-color:#49b8ff}
+    .a7 progress.progress{display:block;width:100%;height:8px;border:0;border-radius:9px;overflow:hidden;background:#294761}
+    .a7 progress.progress::-webkit-progress-bar{background:#294761;border-radius:9px}
+    .a7 progress.progress::-webkit-progress-value{background:#4bb4f7;border-radius:9px}
+    .a7 progress.progress::-moz-progress-bar{background:#4bb4f7;border-radius:9px}
+    .a7 .report{display:none}
+    .a7 .report section{border-top:1px solid #456b8a;padding:14px 0;break-inside:avoid}
+    .a7 .report-answer{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #456b8a;border-radius:8px;padding:12px;min-height:42px}
+    .a7 .small{font-size:14px}
+    @media(max-width:680px){
+      .a7{padding:18px 14px 48px}
+      .a7 .panel{padding:17px}
+      .a7 .grid{grid-template-columns:1fr}
+      .a7 .stage-nav button{flex:1 1 42%}
+      .a7 textarea{min-height:125px}
+    }
+    @media print{
+      @page{size:A4;margin:15mm}
+      body>*:not(main){display:none!important}
+      body>.senac-institutional-bar{display:none!important}
+      .a7{max-width:none!important;margin:0!important;padding:0!important;color:#111!important;font:12px/1.5 Arial,sans-serif}
+      .a7 .hero,.a7 .stage-nav,.a7 .stage-panel,.a7 .actions,.a7 .no-print{display:none!important}
+      .a7 #summary-panel{display:block!important}
+      .a7 #summary-panel>*:not(#a7-report){display:none!important}
+      .a7 #a7-report{display:block!important;color:#111!important}
+      .a7 #a7-report h1,.a7 #a7-report h2,.a7 #a7-report h3{color:#111!important}
+      .a7 #a7-report section{border-color:#bbb}
+      .a7 .report-answer{border-color:#bbb}
+      .a7 a{color:#111}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="../index.html">UC<span>11</span> · Central de Suporte</a>
+    <nav aria-label="Navegação principal">
+      <a href="../index.html">Início</a>
+      <a href="../aula-6.html">Aula 6</a>
+    </nav>
+  </header>
+  <main class="a7" id="conteudo">
+    <section class="panel hero">
+      <p class="tag">AULA 07 · PRESENCIAL · 4 HORAS · INDICADOR I2</p>
+      <h1>Elaboração de Respostas e Devolutivas ao Usuário</h1>
+      <p>Transforme uma análise técnica em uma resposta clara, respeitosa e útil. Pratique como informar o que foi identificado, orientar o usuário e combinar os próximos passos.</p>
+      <p class="muted">Teoria contextualizada 45 min · TechEduca 75 min · Café Central 90 min · Avaliação formativa 30 min</p>
+      <div class="note"><strong>Objetivo:</strong> elaborar devolutivas coerentes com a necessidade identificada, adequadas ao contexto e ao canal, com orientação e acompanhamento proporcionais.</div>
+    </section>
+
+    <nav class="stage-nav" id="a7-navigation" aria-label="Etapas da aula">
+      <button type="button" data-stage="0" aria-current="step">1 · Identificação</button>
+      <button type="button" data-stage="1" disabled>2 · Teoria</button>
+      <button type="button" data-stage="2" disabled>3 · TechEduca</button>
+      <button type="button" data-stage="3" disabled>4 · Café Central</button>
+      <button type="button" data-stage="4" disabled>5 · Avaliação</button>
+      <button type="button" data-stage="5" disabled>6 · Resumo</button>
+    </nav>
+    <progress class="progress" id="a7-progress" aria-label="Progresso das etapas" value="1" max="6">Etapa 1 de 6</progress>
+    <p class="status" id="a7-stage-status" role="status" aria-live="polite"></p>
+    <p class="warning" id="a7-stage-warning" role="status" aria-live="polite"></p>
+
+    <section class="panel stage-panel" data-stage-panel="0" id="identity-panel">
+      <h2>1. Identificação e orientações</h2>
+      <p>Informe seu nome completo para iniciar as práticas. As respostas ficam salvas neste navegador e só serão compartilhadas se você exportar e entregar as evidências.</p>
+      <label>Nome completo
+        <input type="text" id="a7-student" data-bind="student" autocomplete="name" required placeholder="Digite seu nome e sobrenome">
+      </label>
+      <div class="note"><strong>Como trabalhar:</strong> responda com suas próprias palavras. Use apenas os dados fictícios dos cenários; não inclua senhas, dados pessoais reais ou informações sensíveis.</div>
+      <div class="actions"><span></span><button type="button" class="primary" data-next>Iniciar a aula →</button></div>
+    </section>
+
+    <section class="panel stage-panel" data-stage-panel="1" id="theory-panel" hidden>
+      <h2>2. Teoria contextualizada — 45 min</h2>
+      <p>Uma devolutiva é a comunicação de retorno sobre uma solicitação ou chamado. Não basta informar que algo foi feito: a pessoa precisa compreender o que foi entendido, o que foi realizado ou identificado e como prosseguir.</p>
+      <div class="grid">
+        <article class="card"><h3>Contexto e necessidade</h3><p>Retome o pedido com linguagem simples. Confirme o impacto ou a dúvida sem culpar o usuário e sem presumir informações que ainda não foram verificadas.</p></article>
+        <article class="card"><h3>Precisão e transparência</h3><p>Diferencie fatos confirmados de hipóteses. Explique o que foi verificado e o que ainda depende de análise; não prometa prazo ou resultado sem confirmação.</p></article>
+        <article class="card"><h3>Orientação útil</h3><p>Organize instruções em passos curtos, indique onde agir e o resultado esperado. Evite siglas e termos técnicos sem explicação.</p></article>
+        <article class="card"><h3>Continuidade e registro</h3><p>Informe quem acompanhará, qual será o próximo passo e como o usuário receberá novidades. Registre a comunicação no chamado conforme o processo da equipe.</p></article>
+      </div>
+
+      <h3>Estrutura de uma devolutiva profissional</h3>
+      <div class="grid">
+        <article class="card structure"><h3>1. Identificação da solicitação</h3><p>Saudação adequada e breve confirmação do que a pessoa pediu. Isso demonstra escuta e permite corrigir um possível entendimento equivocado.</p></article>
+        <article class="card structure"><h3>2. Orientação apresentada</h3><p>Explique a ação realizada ou a instrução necessária, em ordem lógica e com palavras acessíveis. Informe limites e condições relevantes.</p></article>
+        <article class="card structure"><h3>3. Próximos passos</h3><p>Defina o que acontecerá em seguida, quem será responsável e como ou quando haverá acompanhamento, sem inventar prazos.</p></article>
+        <article class="card structure"><h3>4. Informações complementares</h3><p>Quando necessário, peça somente os dados que ajudam no diagnóstico, explique por que são necessários e indique um canal apropriado e seguro.</p></article>
+        <article class="card structure"><h3>5. Encerramento cordial</h3><p>Convide a pessoa a confirmar se a orientação funcionou ou a retornar se a dificuldade persistir. Agradeça e encerre sem pressionar.</p></article>
+      </div>
+
+      <div class="grid">
+        <article class="card example">
+          <h3>Boa devolutiva — solução aplicada</h3>
+          <p>“Olá, Ana. Sobre a dificuldade para acessar o portal, atualizamos a permissão da sua conta. Por favor, saia e entre novamente para testar. Se ainda não conseguir acessar, responda a este chamado informando a mensagem exibida. Obrigado por nos avisar.”</p>
+          <p class="small muted">Retoma a necessidade, informa a ação confirmada, dá um passo verificável e combina continuidade.</p>
+        </article>
+        <article class="card example bad">
+          <h3>Devolutiva que precisa melhorar</h3>
+          <p>“Resolvido. Tenta aí. Se não der, manda seus dados.”</p>
+          <p class="small muted">Não identifica o pedido nem explica a ação; a orientação é vaga e solicita dados sem necessidade, justificativa ou canal seguro.</p>
+        </article>
+      </div>
+      <div class="note"><strong>Regra de cuidado:</strong> peça somente informações pertinentes ao chamado. Nunca solicite senha, código de autenticação ou dados completos de pagamento.</div>
+
+      <h3>Confira sua compreensão</h3>
+      <p>Responda às situações para avançar. A atividade é formativa: a seleção não gera nota automática.</p>
+      <label>1. O que deve vir primeiro ao responder a um pedido?
+        <select id="a7-theory-0" data-bind="theory.0" required>
+          <option value="">Selecione uma resposta</option>
+          <option value="confirm">Confirmar com clareza a solicitação entendida.</option>
+          <option value="close">Encerrar o chamado sem explicar o que foi entendido.</option>
+          <option value="guess">Apresentar uma causa provável como se já estivesse confirmada.</option>
+        </select>
+      </label>
+      <label>2. Uma instrução de atendimento deve:
+        <select id="a7-theory-1" data-bind="theory.1" required>
+          <option value="">Selecione uma resposta</option>
+          <option value="steps">Usar passos claros e adequados ao conhecimento do usuário.</option>
+          <option value="jargon">Usar siglas técnicas sem explicar, para ser mais rápida.</option>
+          <option value="vague">Deixar a ação implícita e pedir que a pessoa tente algo.</option>
+        </select>
+      </label>
+      <label>3. Se a solicitação depende de outra equipe, a devolutiva deve:
+        <select id="a7-theory-2" data-bind="theory.2" required>
+          <option value="">Selecione uma resposta</option>
+          <option value="promise">Prometer uma solução imediata para tranquilizar o usuário.</option>
+          <option value="next">Explicar o encaminhamento e como será feito o acompanhamento.</option>
+          <option value="silent">Aguardar em silêncio até que a pessoa pergunte novamente.</option>
+        </select>
+      </label>
+      <p id="a7-theory-feedback" class="note" role="status" aria-live="polite">Selecione uma opção em cada situação. Você poderá revisar suas respostas no resumo.</p>
+      <div class="actions"><button type="button" data-prev>← Identificação</button><button type="button" class="primary" data-next>Ir para a prática guiada →</button></div>
+    </section>
+
+    <section class="panel stage-panel" data-stage-panel="2" id="guided-panel" hidden>
+      <h2>3. Prática guiada — TechEduca (75 min)</h2>
+      <p>Com o instrutor, elabore respostas para os quatro cenários da TechEduca. Para cada caso, identifique o pedido, descreva a orientação, indique o próximo passo, peça somente informações necessárias e encerre cordialmente. Reserve cerca de 15 minutos por cenário e 15 minutos para comparar as respostas.</p>
+      <p class="note">Os chamados são fictícios. Discuta com a turma como o canal e a urgência influenciam o tom e a quantidade de detalhes, sem alterar os fatos confirmados.</p>
+      <article class="card case">
+        <h3>Cenário 1 — Solução aplicada</h3>
+        <p>Uma professora relata que não consegue acessar o ambiente de cursos. A equipe confirmou que o acesso estava expirado, renovou a permissão e registrou a alteração. O portal pode levar alguns minutos para atualizar.</p>
+        <label>Escreva a devolutiva, incluindo o teste solicitado e o que fazer se o acesso continuar indisponível.
+          <textarea id="a7-guided-0" data-bind="guided.0" required minlength="30" maxlength="1600" placeholder="Olá... Sobre o acesso ao ambiente..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Cenário 2 — Solicitação de informações</h3>
+        <p>Um estudante informa que uma atividade não aparece no portal, mas não menciona qual atividade nem em que turma está. A equipe ainda não localizou a página correspondente.</p>
+        <label>Peça as informações que ajudam a localizar o caso e explique como enviá-las sem solicitar senha ou dados desnecessários.
+          <textarea id="a7-guided-1" data-bind="guided.1" required minlength="30" maxlength="1600" placeholder="Olá... Para localizar a atividade, poderia informar..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Cenário 3 — Acompanhamento</h3>
+        <p>A instabilidade no envio de arquivos foi registrada e encaminhada para análise da equipe responsável. Ainda não há previsão confirmada de normalização. O estudante precisa entregar uma atividade.</p>
+        <label>Informe o status conhecido, reconheça o impacto e descreva como o acompanhamento será comunicado, sem prometer prazo.
+          <textarea id="a7-guided-2" data-bind="guided.2" required minlength="30" maxlength="1600" placeholder="Olá... A instabilidade foi registrada e está em análise..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Cenário 4 — Encerramento</h3>
+        <p>Após receber orientações para atualizar o navegador, a professora confirmou que conseguiu enviar o material. Não há outra solicitação pendente.</p>
+        <label>Redija uma resposta final que confirme o resultado, agradeça o retorno e deixe claro como pedir ajuda caso a dificuldade volte.
+          <textarea id="a7-guided-3" data-bind="guided.3" required minlength="30" maxlength="1600" placeholder="Olá... Obrigado por confirmar que..."></textarea>
+        </label>
+      </article>
+      <p class="small muted">A prática guiada deve ser discutida com o instrutor; o sistema não avalia automaticamente a qualidade das respostas.</p>
+      <div class="actions"><button type="button" data-prev>← Teoria</button><button type="button" class="primary" data-next>Ir para a prática autônoma →</button></div>
+    </section>
+
+    <section class="panel stage-panel" data-stage-panel="3" id="autonomous-panel" hidden>
+      <h2>4. Prática autônoma — Café Central (90 min)</h2>
+      <p>Assuma o atendimento da central do Café Central. Leia os dados disponíveis e produza uma devolutiva adequada a cada etapa. Planeje cerca de 15 minutos por chamado e use os minutos finais para revisar clareza, cordialidade e próximos passos.</p>
+      <p class="note">Não invente resultados, prazos ou políticas. Se faltar uma informação, pergunte; se depender de outra equipe, explique o encaminhamento e o acompanhamento previsto.</p>
+      <article class="card case">
+        <h3>Chamado 1 — Solicitação de informações</h3>
+        <p>Uma atendente informa que o sistema não encontrou um pedido feito para retirada. A busca pelo número informado não retornou resultado; o pedido pode ter sido feito com outro identificador.</p>
+        <label>Peça dados pertinentes para localizar o pedido e explique quais informações não devem ser compartilhadas por esse canal.
+          <textarea id="a7-autonomous-0" data-bind="autonomous.0" required minlength="30" maxlength="1600" placeholder="Olá... Para localizar o pedido, informe apenas..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Chamado 2 — Atualização de status</h3>
+        <p>O caixa relata lentidão ao abrir o fechamento. A equipe registrou o incidente e iniciou a análise. Ainda não foi identificada a causa nem há previsão de correção.</p>
+        <label>Comunique o status sem apresentar hipótese como fato e informe como o caixa poderá acompanhar a solicitação.
+          <textarea id="a7-autonomous-1" data-bind="autonomous.1" required minlength="30" maxlength="1600" placeholder="Olá... O incidente foi registrado e a equipe está..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Chamado 3 — Escalonamento</h3>
+        <p>Uma gerente informa divergência entre o total de vendas e o relatório do sistema. O suporte inicial conferiu o período e a unidade; a divergência permanece e requer análise da equipe financeira responsável pelo sistema.</p>
+        <label>Explique o encaminhamento, resuma o que já foi verificado e diga como haverá continuidade, sem atribuir culpa.
+          <textarea id="a7-autonomous-2" data-bind="autonomous.2" required minlength="30" maxlength="1600" placeholder="Olá... Conferimos o período e a unidade..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Chamado 4 — Solução aplicada</h3>
+        <p>Uma estação não imprimia os comprovantes. O suporte confirmou que a fila estava pausada, retomou o serviço e fez um teste com um comprovante fictício, que foi impresso. Não foi necessário acessar dados de clientes.</p>
+        <label>Informe a ação realizada e solicite uma confirmação simples do usuário, sem expor dados de clientes.
+          <textarea id="a7-autonomous-3" data-bind="autonomous.3" required minlength="30" maxlength="1600" placeholder="Olá... Retomamos o serviço de impressão e o teste..."></textarea>
+        </label>
+      </article>
+      <article class="card case">
+        <h3>Chamado 5 — Encerramento</h3>
+        <p>A gerente confirmou que o relatório atualizado apresenta os valores esperados após a correção feita pela equipe responsável. Não há pendências informadas.</p>
+        <label>Finalize o atendimento resumindo o resultado confirmado e orientando como reabrir ou registrar um novo chamado se necessário.
+          <textarea id="a7-autonomous-4" data-bind="autonomous.4" required minlength="30" maxlength="1600" placeholder="Olá... Obrigado por confirmar que..."></textarea>
+        </label>
+      </article>
+      <div class="actions"><button type="button" data-prev>← TechEduca</button><button type="button" class="primary" data-next>Ir para a avaliação →</button></div>
+    </section>
+
+    <section class="panel stage-panel" data-stage-panel="4" id="evaluation-panel" hidden>
+      <h2>5. Avaliação formativa — 30 min</h2>
+      <p>Compare as devolutivas abaixo, justifique sua análise e reflita sobre suas próprias respostas. A autoavaliação orienta a conversa com o instrutor; não gera nota automática.</p>
+      <article class="card">
+        <h3>Análise 1 — Acesso ao sistema</h3>
+        <p><strong>Resposta:</strong> “Sua conta foi liberada. Entre novamente no portal. Se a mensagem continuar, informe o texto exibido no aviso, sem enviar sua senha.”</p>
+        <label>Como você avalia esta resposta?
+          <select id="a7-analysis-0" data-bind="analysis.0" required>
+            <option value="">Selecione</option>
+            <option value="adequate">Adequada: orienta uma ação e pede retorno sem solicitar senha.</option>
+            <option value="improve">Precisa melhorar: falta esclarecer a solicitação ou o próximo passo.</option>
+          </select>
+        </label>
+        <label>Justifique sua análise.
+          <textarea id="a7-analysis-note-0" data-bind="analysisNotes.0" required minlength="25" maxlength="1000" placeholder="A resposta é adequada/precisa melhorar porque..."></textarea>
+        </label>
+      </article>
+      <article class="card">
+        <h3>Análise 2 — Instabilidade em investigação</h3>
+        <p><strong>Resposta:</strong> “A equipe está verificando. Deve voltar ao normal em dez minutos; aguarde.”</p>
+        <label>Como você avalia esta resposta?
+          <select id="a7-analysis-1" data-bind="analysis.1" required>
+            <option value="">Selecione</option>
+            <option value="adequate">Adequada: informa um prazo confirmado e o canal de acompanhamento.</option>
+            <option value="improve">Precisa melhorar: apresenta prazo sem confirmação e não combina acompanhamento.</option>
+          </select>
+        </label>
+        <label>Justifique sua análise e indique como reescrever a mensagem.
+          <textarea id="a7-analysis-note-1" data-bind="analysisNotes.1" required minlength="25" maxlength="1000" placeholder="Esta resposta precisa melhorar porque... Uma alternativa seria..."></textarea>
+        </label>
+      </article>
+      <label>Reflexão: qual aspecto da devolutiva você precisa praticar mais e como vai aplicar esse cuidado no próximo atendimento?
+        <textarea id="a7-reflection" data-bind="reflection" required minlength="40" maxlength="1600" placeholder="No próximo atendimento, vou..."></textarea>
+      </label>
+      <fieldset class="checklist">
+        <legend><strong>Checklist de qualidade da devolutiva</strong></legend>
+        <p>Marque cada item depois de revisar suas respostas.</p>
+        <label><input type="checkbox" data-bind="checklist.0"> Identifiquei a solicitação e considerei a necessidade do usuário.</label>
+        <label><input type="checkbox" data-bind="checklist.1"> Separei fatos confirmados de hipóteses e usei linguagem clara e cordial.</label>
+        <label><input type="checkbox" data-bind="checklist.2"> Apresentei uma orientação objetiva ou pedi informações pertinentes.</label>
+        <label><input type="checkbox" data-bind="checklist.3"> Informei o próximo passo e o acompanhamento sem promessas não confirmadas.</label>
+        <label><input type="checkbox" data-bind="checklist.4"> Evitei solicitar ou divulgar dados sensíveis e indiquei um encerramento adequado.</label>
+      </fieldset>
+      <div class="actions"><button type="button" data-prev>← Café Central</button><button type="button" class="primary" data-next>Ver resumo e evidências →</button></div>
+    </section>
+
+    <section class="panel stage-panel" data-stage-panel="5" id="summary-panel" hidden>
+      <h2>6. Resumo e evidências</h2>
+      <p>Revise o registro das atividades. A conclusão não atribui nota; a análise pedagógica é feita pelo instrutor.</p>
+      <div id="a7-report" class="report"></div>
+      <div class="actions no-print">
+        <button type="button" data-prev>← Avaliação</button>
+        <div>
+          <button type="button" id="a7-print" class="primary">Imprimir / Salvar em PDF</button>
+          <button type="button" id="a7-export">Exportar evidências (JSON)</button>
+        </div>
+      </div>
+      <p id="a7-export-status" class="status no-print" role="status" aria-live="polite"></p>
+      <p class="small muted no-print">O arquivo exportado contém suas respostas. Confira o conteúdo e entregue pelo canal indicado pelo instrutor. As respostas não são enviadas automaticamente ao Classroom.</p>
+    </section>
+  </main>
+  <footer>UC11 · Realizar operações de suporte junto ao usuário · Aula 7 · Material didático</footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE_KEY = "uc11-aula7-v1";
+      const defaults = {
+        student: "",
+        theory: ["", "", ""],
+        guided: ["", "", "", ""],
+        autonomous: ["", "", "", "", ""],
+        analysis: ["", ""],
+        analysisNotes: ["", ""],
+        reflection: "",
+        checklist: [false, false, false, false, false],
+        activeStage: 0
+      };
+      const copyArray = (value, fallback, transform) => Array.isArray(value)
+        ? fallback.map((_, index) => transform(value[index]))
+        : fallback.slice();
+      const state = { ...defaults };
+      const saved = UC11Storage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+            throw new TypeError("O registro salvo não é um objeto.");
+          }
+          state.student = typeof parsed.student === "string" ? parsed.student : "";
+          state.theory = copyArray(parsed.theory, defaults.theory, value => typeof value === "string" ? value : "");
+          state.guided = copyArray(parsed.guided, defaults.guided, value => typeof value === "string" ? value : "");
+          state.autonomous = copyArray(parsed.autonomous, defaults.autonomous, value => typeof value === "string" ? value : "");
+          state.analysis = copyArray(parsed.analysis, defaults.analysis, value => typeof value === "string" ? value : "");
+          state.analysisNotes = copyArray(parsed.analysisNotes, defaults.analysisNotes, value => typeof value === "string" ? value : "");
+          state.reflection = typeof parsed.reflection === "string" ? parsed.reflection : "";
+          state.checklist = copyArray(parsed.checklist, defaults.checklist, value => value === true);
+          state.activeStage = Number.isInteger(parsed.activeStage) ? Math.min(5, Math.max(0, parsed.activeStage)) : 0;
+        } catch (error) {
+          console.error("UC11 Aula 7: não foi possível ler o progresso salvo.", error);
+          UC11Storage.removeItem(STORAGE_KEY);
+          document.getElementById("a7-stage-warning").textContent = "O registro salvo estava inválido e foi removido. Você pode iniciar uma nova resposta.";
+          state.activeStage = 0;
+        }
+      }
+
+      const stageNames = ["Identificação", "Teoria", "TechEduca", "Café Central", "Avaliação", "Resumo"];
+      const panels = Array.from(document.querySelectorAll("[data-stage-panel]"));
+      const stageButtons = Array.from(document.querySelectorAll("[data-stage]"));
+      const navigation = document.getElementById("a7-navigation");
+      const progress = document.getElementById("a7-progress");
+      const status = document.getElementById("a7-stage-status");
+      const warning = document.getElementById("a7-stage-warning");
+      const bindings = Array.from(document.querySelectorAll("[data-bind]"));
+      let activeStage = 0;
+
+      function valueFor(binding) {
+        const [group, index] = binding.split(".");
+        return index === undefined ? state[group] : state[group][Number(index)];
+      }
+
+      function setValue(binding, value) {
+        const [group, index] = binding.split(".");
+        if (index === undefined) state[group] = value;
+        else state[group][Number(index)] = value;
+      }
+
+      function restoreFields() {
+        bindings.forEach(element => {
+          const value = valueFor(element.dataset.bind);
+          if (element.type === "checkbox") element.checked = value === true;
+          else element.value = typeof value === "string" ? value : "";
+        });
+      }
+
+      const filled = value => typeof value === "string" && value.trim().length > 0;
+      const longEnough = (value, minimum = 30) => filled(value) && value.trim().length >= minimum;
+      const identified = () => state.student.trim().split(/\s+/).filter(Boolean).length >= 2;
+      const theoryComplete = () => state.theory.every(filled);
+      const guidedComplete = () => state.guided.every(value => longEnough(value));
+      const autonomousComplete = () => state.autonomous.every(value => longEnough(value));
+      const evaluationComplete = () => state.analysis.every(filled)
+        && state.analysisNotes.every(value => longEnough(value, 25))
+        && longEnough(state.reflection, 40)
+        && state.checklist.every(value => value === true);
+      const completion = [identified, theoryComplete, guidedComplete, autonomousComplete, evaluationComplete];
+
+      function maxUnlockedStage() {
+        let last = 0;
+        for (let index = 0; index < completion.length; index += 1) {
+          if (!completion[index]()) break;
+          last = index + 1;
+        }
+        return last;
+      }
+
+      function save() {
+        state.activeStage = activeStage;
+        UC11Storage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function updateTheoryFeedback() {
+        const feedback = document.getElementById("a7-theory-feedback");
+        const messages = [
+          state.theory[0] === "confirm" ? "1. Correto: confirmar o pedido demonstra escuta e alinha a compreensão." : "1. Revise: comece confirmando o que foi entendido, sem presumir a causa.",
+          state.theory[1] === "steps" ? "2. Correto: instruções claras ajudam a pessoa a agir e verificar o resultado." : "2. Revise: prefira passos objetivos e explique termos técnicos quando necessários.",
+          state.theory[2] === "next" ? "3. Correto: informe o encaminhamento e combine como o usuário receberá atualização." : "3. Revise: transparência e acompanhamento evitam expectativas sem confirmação."
+        ];
+        const answered = state.theory.filter(filled).length;
+        feedback.textContent = answered === 3 ? messages.join(" ") : "Selecione uma opção em cada situação. Você poderá revisar suas respostas no resumo.";
+      }
+
+      function renderReport() {
+        const report = document.getElementById("a7-report");
+        const escape = value => String(value ?? "").replace(/[&<>"']/g, character => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        })[character]);
+        const answer = value => `<p class="report-answer">${escape(filled(value) ? value : "Não preenchido")}</p>`;
+        const section = (title, body) => `<section><h2>${escape(title)}</h2>${body}</section>`;
+        const scenarioNames = [
+          ["Solução aplicada", "Solicitação de informações", "Acompanhamento", "Encerramento"],
+          ["Solicitação de informações", "Atualização de status", "Escalonamento", "Solução aplicada", "Encerramento"]
+        ];
+        const guided = state.guided.map((value, index) => `<h3>TechEduca — ${index + 1}. ${scenarioNames[0][index]}</h3>${answer(value)}`).join("");
+        const autonomous = state.autonomous.map((value, index) => `<h3>Café Central — ${index + 1}. ${scenarioNames[1][index]}</h3>${answer(value)}`).join("");
+        const analysis = state.analysis.map((value, index) => `<h3>Análise ${index + 1}</h3><p><strong>Avaliação:</strong> ${escape(value || "Não respondida")}</p>${answer(state.analysisNotes[index])}`).join("");
+        const checklistItems = [
+          "Identifiquei a solicitação e considerei a necessidade do usuário.",
+          "Separei fatos confirmados de hipóteses e usei linguagem clara e cordial.",
+          "Apresentei uma orientação objetiva ou pedi informações pertinentes.",
+          "Informei o próximo passo e o acompanhamento sem promessas não confirmadas.",
+          "Evitei solicitar ou divulgar dados sensíveis e indiquei um encerramento adequado."
+        ];
+        const checklist = checklistItems.map((item, index) => `<li>${state.checklist[index] ? "Concluído" : "Pendente"} — ${escape(item)}</li>`).join("");
+        const theory = state.theory.map((value, index) => `<p><strong>Situação ${index + 1}:</strong> ${escape(value || "Não respondida")}</p>`).join("");
+        const duration = window.UC11LessonTime?.summary() || "Tempo de realização não disponível.";
+        report.innerHTML = `<h1>UC11 · Aula 7 — Respostas e Devolutivas</h1><p><strong>Estudante:</strong> ${escape(state.student)}</p><p><strong>Turma:</strong> 2025.07.186 · <strong>Indicador:</strong> I2 — Realiza devolutiva ao usuário conforme necessidade identificada.</p>${section("Teoria contextualizada", theory)}${section("Prática guiada — TechEduca", guided)}${section("Prática autônoma — Café Central", autonomous)}${section("Avaliação formativa", analysis + "<h3>Reflexão</h3>" + answer(state.reflection) + "<h3>Checklist de qualidade</h3><ul>" + checklist + "</ul>")}<section><h2>Tempo de realização</h2><p>${escape(duration)}</p></section><p>Registro para conferência do instrutor. As respostas não recebem nota automática nem são enviadas automaticamente ao Classroom.</p>`;
+        report.style.display = "block";
+      }
+
+      function showStage(index) {
+        const unlocked = maxUnlockedStage();
+        if (index < 0 || index > unlocked) return false;
+        activeStage = index;
+        state.activeStage = index;
+        panels.forEach((panel, panelIndex) => {
+          panel.hidden = panelIndex !== index;
+        });
+        stageButtons.forEach((button, buttonIndex) => {
+          button.disabled = buttonIndex > unlocked;
+          if (buttonIndex === index) button.setAttribute("aria-current", "step");
+          else button.removeAttribute("aria-current");
+        });
+        progress.value = index + 1;
+        status.textContent = `Etapa ${index + 1} de ${stageNames.length}: ${stageNames[index]}.`;
+        warning.textContent = "";
+        if (index === 5) renderReport();
+        document.getElementById("conteudo").scrollIntoView({ behavior: "smooth", block: "start" });
+        save();
+        return true;
+      }
+
+      function refreshFlow() {
+        const unlocked = maxUnlockedStage();
+        stageButtons.forEach((button, index) => {
+          button.disabled = index > unlocked;
+        });
+        if (activeStage > unlocked) activeStage = unlocked;
+        panels.forEach((panel, index) => {
+          panel.hidden = index !== activeStage;
+        });
+        stageButtons.forEach((button, index) => {
+          if (index === activeStage) button.setAttribute("aria-current", "step");
+          else button.removeAttribute("aria-current");
+        });
+        progress.value = activeStage + 1;
+        status.textContent = `Etapa ${activeStage + 1} de ${stageNames.length}: ${stageNames[activeStage]}.`;
+        if (activeStage === 5) renderReport();
+      }
+
+      function missingFor(index) {
+        const missing = [
+          "Informe nome e sobrenome.",
+          "Responda às três situações da teoria.",
+          "Escreva uma devolutiva para cada cenário da TechEduca (mínimo de 30 caracteres por resposta).",
+          "Escreva uma devolutiva para cada chamado do Café Central (mínimo de 30 caracteres por resposta).",
+          "Conclua as duas análises, justifique-as, escreva a reflexão e marque todos os itens do checklist."
+        ];
+        return missing[index] || "";
+      }
+
+      restoreFields();
+      updateTheoryFeedback();
+      activeStage = Math.min(state.activeStage, maxUnlockedStage());
+      refreshFlow();
+
+      bindings.forEach(element => {
+        const eventName = element.type === "checkbox" || element.tagName === "SELECT" ? "change" : "input";
+        element.addEventListener(eventName, () => {
+          setValue(element.dataset.bind, element.type === "checkbox" ? element.checked : element.value);
+          if (element.dataset.bind.startsWith("theory.")) updateTheoryFeedback();
+          warning.textContent = "";
+          save();
+          refreshFlow();
+        });
+      });
+
+      navigation.addEventListener("click", event => {
+        const button = event.target.closest("[data-stage]");
+        if (!button || button.disabled) return;
+        showStage(Number(button.dataset.stage));
+      });
+
+      document.querySelectorAll("[data-next]").forEach(button => {
+        button.addEventListener("click", () => {
+          if (!completion[activeStage]()) {
+            warning.textContent = missingFor(activeStage);
+            const firstInvalid = panels[activeStage].querySelector(":invalid");
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+          showStage(activeStage + 1);
+        });
+      });
+
+      document.querySelectorAll("[data-prev]").forEach(button => {
+        button.addEventListener("click", () => showStage(activeStage - 1));
+      });
+
+      document.getElementById("a7-print").addEventListener("click", () => {
+        renderReport();
+        window.print();
+      });
+
+      document.getElementById("a7-export").addEventListener("click", () => {
+        const payload = {
+          lesson: "UC11 — Aula 7",
+          theme: "Elaboração de Respostas e Devolutivas ao Usuário",
+          indicator: "I2 — Realiza devolutiva ao usuário conforme necessidade identificada.",
+          class: "2025.07.186",
+          exportedAt: new Date().toISOString(),
+          duration: window.UC11LessonTime?.summary() || "Não disponível",
+          ...state
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "UC11-Aula-7-Evidencias.json";
+        document.body.append(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        document.getElementById("a7-export-status").textContent = "Evidências exportadas. Revise o arquivo e entregue pelo canal informado pelo instrutor.";
+      });
+    })();
+  </script>
+  <script defer src="../senac-institucional.js?v=3"></script>
+</body>
+</html>
