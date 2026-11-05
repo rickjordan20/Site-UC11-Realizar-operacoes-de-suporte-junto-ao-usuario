@@ -9,7 +9,7 @@ function releaseAt(day){const [d,m]=day.split('/');return '2026'+m+d+'1400'}
 function dateLabel(day){return day+'/2026 às 14h (Brasília)'}
 // O horário é a única condição de liberação para aulas com arquivo publicado.
 // A lista representa os arquivos efetivamente existentes no repositório.
-const lessonFiles={1:"aula-1.html",2:"aula-2.html",3:"aula-3.html",4:"aula-4.html",5:"aula-5.html",6:"aula-6.html",7:"lessons/aula-07.html"};
+const lessonFiles={1:"lessons/aula-01.html",2:"lessons/aula-02.html",3:"lessons/aula-03.html",4:"lessons/aula-04.html",5:"lessons/aula-05.html",6:"lessons/aula-06.html",7:"lessons/aula-07.html"};
 function renderLessons(){
  const now=brasilNow();
  const term=(document.querySelector('#lesson-search')?.value||'').trim().toLocaleLowerCase('pt-BR');
@@ -27,7 +27,7 @@ function renderLessons(){
 }
 renderLessons();setInterval(renderLessons,60000);document.querySelector("#lesson-search").addEventListener("input",renderLessons);
 const remoteDetails=[['Revise os conceitos, classifique quatro situações e registre dois casos da TechEduca e quatro do Café Central.','Atividade individual com identificação, backup JSON e relatório em PDF.'],['Analise três solicitações e escreva respostas claras, respeitosas e úteis.','Três devolutivas profissionais ao usuário.'],['Avalie quatro demandas, organize a prioridade e indique a equipe ou fluxo adequado.','Ficha de triagem e encaminhamento de quatro chamados.'],['Escolha uma funcionalidade do sistema fictício e explique como utilizá-la em linguagem acessível.','Guia de uso com no mínimo cinco etapas.']];
-const remoteFiles={1:"aula-assincrona-1.html",2:"aula-assincrona-2.html"};
+const remoteFiles={1:"lessons/aula-assincrona-01.html",2:"lessons/aula-assincrona-02.html"};
 function renderRemoteActivities(){
  const now=brasilNow();
  document.querySelector('#remote').innerHTML=remotas.map((a,i)=>{

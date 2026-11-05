@@ -3,7 +3,8 @@
  'use strict';
  const match=location.pathname.match(/(?:^|\/)(aula-(?:assincrona-)?\d+)\.html$/i);
  if(!match)return;
- const lesson=match[1],key='uc11-duration-v1:'+lesson;
+ // Aulas publicadas antes da pasta lessons/ usavam aula-1 e aula-assincrona-1 na chave; preserva o registro já salvo.
+ const lesson=match[1].replace(/^(aula-(?:assincrona-)?)0([1-6])$/i,(whole,prefix,number)=>/assincrona/i.test(prefix)&&Number(number)>2?whole:prefix+number),key='uc11-duration-v1:'+lesson;
  let start=Number(UC11Storage.getItem(key))||0;
  const now=()=>Date.now();
  function begin(event){

@@ -30,7 +30,7 @@ O portal é um site estático, sem etapa de build. O GitHub Pages hospeda conte�
 └── demais arquivos de configuração e documentação
 ```
 
-As páginas atuais são `index.html`, `login.html`, `politica-de-privacidade.html`, `autoavaliacao-i1.html`, `aula-1.html` até `aula-6.html`, `aula-assincrona-1.html`, `aula-assincrona-2.html` e `atividade-aula-1.html`.
+As páginas atuais são `index.html`, `login.html`, `politica-de-privacidade.html`, `autoavaliacao-i1.html`, `atividade-aula-1.html` e, em `lessons/`, `aula-01.html` até `aula-07.html`, `aula-assincrona-01.html` e `aula-assincrona-02.html`.
 
 ## Recursos compartilhados e localização
 
@@ -89,7 +89,7 @@ Não é necessário criar `src/`, `dist/` ou adicionar um framework/build para c
 
 ## Estratégia de expansão até a aula 17
 
-- Manter `aula-1.html` a `aula-6.html` e todos os seus caminhos atuais.
+- As aulas 1–6 e as assíncronas foram movidas para `lessons/`; os caminhos antigos redirecionam (308) via `vercel.json`, e o `404.html` encaminha acessos antigos do GitHub Pages para o Vercel.
 - Criar as aulas 7–17 em `lessons/`, usando nomes estáveis como `aula-07.html` até `aula-17.html`; não renomear rotas antigas.
 - Criar novas atividades em `activities/`, seguindo a convenção documentada em `activities/README.md`.
 - Antes de publicar uma página aninhada, usar um template validado com referências aos recursos da raiz e de `assets/` via caminhos relativos apropriados (`../`), links de navegação, guard de acesso e shell institucional.
