@@ -12,13 +12,13 @@ function calendarPreview(){
  if(!events.length){panel.innerHTML='<p><strong>'+label+'</strong> · Nenhuma atividade prevista para esta data.</p>';return}
  const now=brasilNow();
  panel.innerHTML='<strong>'+label+'</strong>'+events.map(e=>{
-  const number=e.tipo==='presencial'?Number(e.titulo.match(/^Aula (\\d+)/)?.[1]):null;
+  const number=e.tipo==='presencial'?Number(e.titulo.match(/^Aula (\d+)/)?.[1]):null;
   const remoteIndex=e.tipo==='remota'?remotas.findIndex(x=>x[0]===e.data)+1:0;
   const path=number?lessonFiles[number]:remoteFiles[remoteIndex];
   const released=now>=releaseAt(e.data);
   const type=e.excepcional?'Assíncrona excepcional · aula regular':e.tipo==='presencial'?'Aula regular presencial':e.tipo==='remota'?'Atividade assíncrona prevista':'Data especial';
   const info=number?aulas[number-1][2]:remoteIndex?remotas[remoteIndex-1][2]:'';
-  const summary=e.tipo==='especial'?'Data institucional prevista no calendário da UC11.':e.excepcional?'Realização individual excepcional devido a reunião interna; não integra as quatro atividades assíncronas previstas.':remoteIndex?'Atividade remota orientada para praticar o indicador '+info+'.':'Encontro de 4 horas com atividades práticas sobre '+e.titulo.replace(/^Aula \\d+ — /,'')+'.';
+  const summary=e.tipo==='especial'?'Data institucional prevista no calendário da UC11.':e.excepcional?'Realização individual excepcional devido a reunião interna; não integra as quatro atividades assíncronas previstas.':remoteIndex?'Atividade remota orientada para praticar o indicador '+info+'.':'Encontro de 4 horas com atividades práticas sobre '+e.titulo.replace(/^Aula \d+ — /,'')+'.';
   const status=e.tipo==='especial'?'<p class="uc-cal-status">Data do evento: '+e.data+'/2026 · Sem horário de liberação de material.</p>':released?'<p class="uc-cal-status"><strong>Data e horário de disponibilização:</strong> '+dateLabel(e.data)+'</p><p class="uc-cal-status">✓ Data de liberação alcançada'+(path?' · Material liberado.':' · Material ainda não publicado.')+'</p>':'<p class="uc-cal-status"><strong>Data e horário de disponibilização:</strong> '+dateLabel(e.data)+'</p><p class="uc-cal-status">⏳ Ainda não liberada.</p>';
   const action=e.tipo==='especial'?'':path&&released?'<a href="'+path+'">Abrir material da aula</a>':path?'<small>O acesso será habilitado no horário indicado.</small>':'<small>Sem material publicado para acesso direto.</small>';
   return '<article><small>'+type+(e.tipo==='especial'?'':' · 4h')+(info?' · '+info:'')+'</small><h4>'+e.titulo+'</h4><p>'+summary+'</p>'+status+action+'</article>'
