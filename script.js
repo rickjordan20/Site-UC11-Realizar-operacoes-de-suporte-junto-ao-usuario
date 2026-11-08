@@ -33,7 +33,6 @@ document.querySelector('#uc-cal-grid').addEventListener('click',e=>{const button
 document.querySelector('#uc-cal-prev').addEventListener('click',()=>{if(calMonth>9){calMonth--;calSelected='2026-'+calPad(calMonth+1)+'-01';renderCalendar()}});
 document.querySelector('#uc-cal-next').addEventListener('click',()=>{if(calMonth<11){calMonth++;calSelected='2026-'+calPad(calMonth+1)+'-01';renderCalendar()}});
 document.querySelector('#uc-cal-today').addEventListener('click',()=>{calMonth=10;calSelected='2026-11-09';renderCalendar()});
-renderCalendar();
 // Horário oficial da turma em Brasília (UTC-3): 14h00.
 // O bloqueio visual funciona no navegador; não substitui controle de acesso no servidor.
 const TZ='America/Sao_Paulo';
@@ -69,6 +68,7 @@ function renderRemoteActivities(){
   return '<details class="remote-item"><summary><time>'+a[0]+'/2026</time><strong>'+a[1]+'</strong><small>'+a[2]+' · 4h · '+(released?'Data liberada':'Bloqueada até 14h')+'</small><span aria-hidden="true">⌄</span></summary><div class="remote-detail">'+(released?'<p><strong>Desafio:</strong> '+remoteDetails[i][0]+'</p><p><strong>Evidência:</strong> '+remoteDetails[i][1]+'</p>':'<p>O conteúdo e as orientações serão exibidos após a liberação.</p>')+availability+'</div></details>';
  }).join('');
 }renderRemoteActivities();setInterval(renderRemoteActivities,60000);
+renderCalendar();
 function updateNextEvent(){const now=brasilNow();const upcoming=agenda.filter(a=>('2026'+a.data.slice(3,5)+a.data.slice(0,2)+'1400')>=now).sort((a,b)=>a.data.slice(3,5).localeCompare(b.data.slice(3,5))||a.data.slice(0,2).localeCompare(b.data.slice(0,2)))[0];const el=document.querySelector('#next-event');if(!el)return;el.textContent=upcoming?'Próximo encontro: '+upcoming.data+'/2026 · '+upcoming.titulo:'Calendário da UC11 concluído.';}updateNextEvent();setInterval(updateNextEvent,60000);
 const topButton=document.querySelector('#back-to-top');function updateTopButton(){topButton.classList.toggle('visible',window.scrollY>500)}window.addEventListener('scroll',updateTopButton,{passive:true});updateTopButton();topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 document.querySelector('#theme').addEventListener('click',()=>{document.body.classList.toggle('light');document.querySelector('#theme').textContent=document.body.classList.contains('light')?'☾':'☀'});
