@@ -9,13 +9,13 @@ function calendarPreview(){
  const label=new Intl.DateTimeFormat('pt-BR',{day:'numeric',month:'long',year:'numeric'}).format(date);
  if(!events.length){panel.innerHTML='<p><strong>'+label+'</strong> · Nenhuma atividade prevista.</p>';return}
  panel.innerHTML='<strong>'+label+'</strong>'+events.map(e=>{
-  const number=e.tipo==='presencial'?Number(e.titulo.match(/^Aula (\\d+)/)?.[1]):null;
+  const number=e.tipo==='presencial'?Number(e.titulo.match(/^Aula (\d+)/)?.[1]):null;
   const remoteIndex=e.tipo==='remota'?remotas.findIndex(x=>x[0]===e.data)+1:0;
   const path=number?lessonFiles[number]:remoteFiles[remoteIndex];
   const released=brasilNow()>=releaseAt(e.data);
   const type=e.excepcional?'Assíncrona excepcional · aula regular':e.tipo==='presencial'?'Aula regular presencial':e.tipo==='remota'?'Atividade assíncrona prevista':'Data especial';
   const info=number?aulas[number-1][2]:remoteIndex?remotas[remoteIndex-1][2]:'';
-  const summary=e.tipo==='especial'?'Data institucional prevista no calendário da UC11.':e.excepcional?'Realização individual excepcional devido a reunião interna; não integra as quatro atividades assíncronas previstas.':remoteIndex?'Atividade remota orientada para praticar o indicador '+info+'.':'Encontro de 4 horas com atividades práticas sobre '+e.titulo.replace(/^Aula \\d+ — /,'')+'.';
+  const summary=e.tipo==='especial'?'Data institucional prevista no calendário da UC11.':e.excepcional?'Realização individual excepcional devido a reunião interna; não integra as quatro atividades assíncronas previstas.':remoteIndex?'Atividade remota orientada para praticar o indicador '+info+'.':'Encontro de 4 horas com atividades práticas sobre '+e.titulo.replace(/^Aula \d+ — /,'')+'.';
   return '<article><small>'+type+' · '+(e.tipo==='especial'?'': '4h')+(info?' · '+info:'')+'</small><h4>'+e.titulo+'</h4><p>'+summary+'</p>'+(path&&released?'<a href="'+path+'">Abrir material da aula</a>':path?'<small>Material disponível a partir de '+dateLabel(e.data)+'</small>':'<small>Sem material publicado para acesso direto.</small>')+'</article>'
  }).join('');
 }
