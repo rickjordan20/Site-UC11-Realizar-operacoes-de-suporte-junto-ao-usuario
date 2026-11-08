@@ -25,3 +25,8 @@ body.light .senac-profile-trigger,body.light .senac-profile-logout{background:#e
 body.light .senac-profile-trigger:hover,body.light .senac-profile-trigger:focus-visible,body.light .senac-profile-logout:hover,body.light .senac-profile-logout:focus-visible{background:#d6edff}
 @media(max-width:650px){.senac-profile-panel{right:50%;transform:translateX(50%)}}
 @media print{.senac-profile{display:none!important}}
+
+/* O perfil pertence à barra institucional e deve ficar acima do cabeçalho sticky da UC11. */
+body>.senac-institutional-bar{z-index:50!important;overflow:visible!important}
+body>.senac-institutional-bar .senac-nav-group,body>.senac-institutional-bar .senac-profile{overflow:visible!important}
+body>.senac-institutional-bar .senac-profile-panel{z-index:60}
