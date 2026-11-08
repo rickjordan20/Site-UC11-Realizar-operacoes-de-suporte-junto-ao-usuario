@@ -78,3 +78,24 @@ renderCalendar();
 function updateNextEvent(){const now=brasilNow();const upcoming=agenda.filter(a=>('2026'+a.data.slice(3,5)+a.data.slice(0,2)+'1400')>=now).sort((a,b)=>a.data.slice(3,5).localeCompare(b.data.slice(3,5))||a.data.slice(0,2).localeCompare(b.data.slice(0,2)))[0];const el=document.querySelector('#next-event');if(!el)return;el.textContent=upcoming?'Próximo encontro: '+upcoming.data+'/2026 · '+upcoming.titulo:'Calendário da UC11 concluído.';}updateNextEvent();setInterval(updateNextEvent,60000);
 const topButton=document.querySelector('#back-to-top');function updateTopButton(){topButton.classList.toggle('visible',window.scrollY>500)}window.addEventListener('scroll',updateTopButton,{passive:true});updateTopButton();topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 document.querySelector('#theme').addEventListener('click',()=>{document.body.classList.toggle('light');document.querySelector('#theme').textContent=document.body.classList.contains('light')?'☾':'☀'});
+/* Navegação do cabeçalho: seção ativa, mobile e teclado */
+(()=>{
+const header=document.querySelector('.site-header'),nav=document.getElementById('site-navigation'),toggle=document.getElementById('menu-toggle'),more=nav?.querySelector('.nav-more');
+if(!header||!nav||!toggle)return;
+const links=[...nav.querySelectorAll('a[href^="#"]')];
+const closeMore=()=>{if(more)more.open=false};
+function closeMenu(restoreFocus=false){nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menu de navegação');closeMore();if(restoreFocus)toggle.focus()}
+toggle.addEventListener('click',()=>{const opening=!nav.classList.contains('is-open');nav.classList.toggle('is-open',opening);toggle.setAttribute('aria-expanded',String(opening));toggle.setAttribute('aria-label',opening?'Fechar menu de navegação':'Abrir menu de navegação');if(!opening)closeMore()});
+links.forEach(a=>a.addEventListener('click',()=>closeMenu()));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(nav.classList.contains('is-open')||more?.open)){closeMenu(true)}});
+document.addEventListener('pointerdown',e=>{if(!header.contains(e.target)){closeMenu()}else if(more?.open&&!more.contains(e.target)){closeMore()}});
+const mq=window.matchMedia('(min-width: 1051px)');mq.addEventListener('change',()=>closeMenu());
+function active(id){links.forEach(a=>{if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')});more?.classList.toggle('has-current',!!more?.querySelector('a[aria-current="location"]'))}
+const sections=links.map(a=>document.getElementById(a.hash.slice(1))).filter(Boolean);
+let ticking=false;
+function updateActive(){const boundary=header.getBoundingClientRect().height+45;let current=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=boundary)current=section}if(current)active(current.id);ticking=false}
+window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(updateActive)}},{passive:true});
+window.addEventListener('resize',()=>{if(!ticking){ticking=true;requestAnimationFrame(updateActive)}});
+window.addEventListener('hashchange',()=>{const id=decodeURIComponent(location.hash.slice(1));if(sections.some(s=>s.id===id))active(id)});
+updateActive();
+})();
