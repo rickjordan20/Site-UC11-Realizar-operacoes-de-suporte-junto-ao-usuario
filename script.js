@@ -19,7 +19,7 @@ function renderLessons(){
   const released=now>=releaseAt(a[0]);
   const lessonPath=lessonFiles[i+1];
   const exists=Boolean(lessonPath);
-  const common='<div class="lesson-card-top"><span class="lesson-number">Aula '+String(i+1).padStart(2,'0')+'</span><time class="lesson-date" datetime="2026-'+a[0].slice(3,5)+'-'+a[0].slice(0,2)+'">'+a[0]+'/2026</time></div><h3>'+a[1]+'</h3><p class="lesson-indicator">'+a[2]+'</p>';
+  const common='<div class="lesson-card-top"><span class="lesson-number">Aula '+String(i+1).padStart(2,'0')+'</span><time class="lesson-date" datetime="2026-'+a[0].slice(3,5)+'-'+a[0].slice(0,2)+'">'+a[0]+'/2026</time></div><h3>'+a[1]+'</h3><p class="lesson-indicator">'+a[2]+'</p>'+(i===7?'<p class="lesson-indicator">Assíncrona excepcional em 09/11 · aula regular da UC11</p>':'');
   if(released&&exists)return '<a class="lesson-card lesson-link released" href="'+lessonPath+'" aria-label="Abrir aula '+(i+1)+': '+a[1]+'">'+common+'<div class="lesson-card-bottom"><span class="lesson-status"><span class="status-dot" aria-hidden="true"></span>Disponível</span><span class="lesson-cta">Acessar aula <span aria-hidden="true">↗</span></span></div></a>';
   if(!released)return '<article class="lesson-card locked" aria-disabled="true">'+common+'<div class="lesson-card-bottom"><span class="lesson-status">Agendada · 14h</span><span class="lesson-pending">Disponível em '+a[0]+'</span></div></article>';
   return '<article class="lesson-card pending" aria-disabled="true">'+common+'<div class="lesson-card-bottom"><span class="lesson-status">Data alcançada</span><span class="lesson-pending">Material em preparação</span></div></article>';
