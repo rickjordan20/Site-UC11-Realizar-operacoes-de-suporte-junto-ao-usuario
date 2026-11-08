@@ -9,7 +9,7 @@ function releaseAt(day){const [d,m]=day.split('/');return '2026'+m+d+'1400'}
 function dateLabel(day){return day+'/2026 às 14h (Brasília)'}
 // O horário é a única condição de liberação para aulas com arquivo publicado.
 // A lista representa os arquivos efetivamente existentes no repositório.
-const lessonFiles={1:"lessons/aula-01.html",2:"lessons/aula-02.html",3:"lessons/aula-03.html",4:"lessons/aula-04.html",5:"lessons/aula-05.html",6:"lessons/aula-06.html",7:"lessons/aula-07.html"};
+const lessonFiles={1:"lessons/aula-01.html",2:"lessons/aula-02.html",3:"lessons/aula-03.html",4:"lessons/aula-04.html",5:"lessons/aula-05.html",6:"lessons/aula-06.html",7:"lessons/aula-07.html",8:"lessons/aula-08.html"};
 function renderLessons(){
  const now=brasilNow();
  const term=(document.querySelector('#lesson-search')?.value||'').trim().toLocaleLowerCase('pt-BR');
