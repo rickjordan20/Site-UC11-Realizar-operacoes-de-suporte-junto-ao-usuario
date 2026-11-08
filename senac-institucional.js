@@ -14,6 +14,8 @@
 
   function createHeader(prefix) {
     const existing = document.querySelector("body > header");
+    // A página inicial possui navegação interativa própria; não a remova nem mova seus nós.
+    const preserveSiteNavigation = Boolean(existing?.classList.contains("site-header"));
     const header = document.createElement("header");
     header.className = "senac-institutional-bar";
 
@@ -52,13 +54,13 @@
 
     const group = document.createElement("div");
     group.className = "senac-nav-group";
-    const nav = existing
+    const nav = existing && !preserveSiteNavigation
       ? existing.querySelector(":scope > nav") || document.createElement("nav")
       : document.createElement("nav");
     nav.classList.add("senac-nav");
     if (!nav.hasAttribute("aria-label")) nav.setAttribute("aria-label", "Navegação principal");
 
-    if (existing) {
+    if (existing && !preserveSiteNavigation) {
       existing.querySelectorAll(":scope > a:not(.brand)").forEach(link => nav.append(link));
       const theme = existing.querySelector(":scope > #theme");
       if (theme) group.append(theme);
@@ -71,7 +73,8 @@
     group.append(nav);
     header.append(brand, group);
 
-    if (existing) existing.replaceWith(header);
+    if (existing && preserveSiteNavigation) existing.before(header);
+    else if (existing) existing.replaceWith(header);
     else document.body.prepend(header);
   }
 
