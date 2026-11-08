@@ -95,3 +95,11 @@ body.light #menu-toggle{background:#fff;color:#1a2941}
 }
 @media(max-width:480px){.site-header{padding:12px 16px}.site-header .brand{font-size:13px}.menu-toggle-text{display:none}#menu-toggle{min-width:42px;padding:8px}.site-navigation{max-height:calc(100dvh - 95px);overflow-y:auto}}
 @media(prefers-reduced-motion:reduce){.site-navigation,.nav-more-items{scroll-behavior:auto}}
+
+/* Corrige o submenu: respeita o estado nativo do <details> e permite clique nos links. */
+.nav-more:not([open])>.nav-more-items{display:none!important}
+.nav-more[open]>.nav-more-items{display:grid}
+.nav-more[open]{z-index:30}
+.nav-more-items{pointer-events:auto}
+.nav-more-items a{position:relative;z-index:1}
+@media(min-width:1051px){.site-header{overflow:visible}.site-navigation{overflow:visible}}
